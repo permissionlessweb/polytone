@@ -26,10 +26,10 @@ rpath = false
 
 [workspace.dependencies]
 polytone = { package = "abstract-polytone", path = "packages/polytone", version = "2.0.0" }
-polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy", version = "4.0.0" }
-polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note", version = "4.0.0" }
-polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice", version = "4.0.0" }
-cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone", version = "5.0.0" }
+polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy", version = "5.0.0" }
+polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note", version = "5.0.0" }
+polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice", version = "5.0.0" }
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone", version = "6.0.0" }
 
 cosmwasm-schema = "2.0.0"
 cosmwasm-std = { version = "2.0.0", features = ["stargate"] }
@@ -47,8 +47,8 @@ sha2 = "0.10.6"
 
 # dev-dependencies
 
-cw-orch = { version = "0.26.0" }
-cw-orch-interchain = { version = "0.7.0" }
+cw-orch = { version = "0.27.0" }
+cw-orch-interchain = { version = "0.8.0" }
 
 cw-multi-test = "2.0.0"
 anyhow = { version = "1.0.51" }
