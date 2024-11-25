@@ -16,7 +16,11 @@ cosmwasm-std = { workspace = true }
 polytone-note = { workspace = true }
 polytone-proxy = { workspace = true }
 polytone-voice = { workspace = true }
-cw-orch-interchain = { workspace = true }
+cw-orch-interchain = { workspace = true, features = ["daemon"] }
+clap = { version = "4.0.32", features = ["derive"] }
+dotenv = "0.15.0"
+env_logger = "0.10.2"
+log = "0.4.22"
 
 [dev-dependencies]
 anyhow.workspace = true

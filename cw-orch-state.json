@@ -107,12 +107,10 @@
       "polytone:voice": 8079
     },
     "default": {
-      "polytone:note | pion-1": "osmo1354ydt9y6rradvfzcjex7er8hh3vd6vaux7lzsfam9sc8wjyulgqz9dvra",
+      "polytone:note": "osmo13pq0nw3dctk3e0aqp9r5vrm2cd55y5qdhmfdssaec6qlypkrq54q45sspx",
       "polytone:note | provider": "osmo1p7mx609vsg753qqvfgy7fhcj79urrvftkrd5rkjwnx3zfmfusr3qv4j4nt",
-      "polytone:note | xion-testnet-1": "osmo1v4x2qldfj92hghpvka9yjzan4y6z9dp7ezrzt9v9xqc3pzyz75esvftan2",
-      "polytone:voice | pion-1": "osmo1kkg2p53nhpx4e8uqk42uktqewgw9mtyu4z7s67c35gqv4k0v8ucszgsnlv",
-      "polytone:voice | provider": "osmo1gnq8mnxjtwhzhfdrrktd5nv26vx7mzmcm2kmnjexdge2yezlzkusk372uj",
-      "polytone:voice | xion-testnet-1": "osmo19kk4505laut7ra570932d307gm3xv9d5z89fqaksy56mlzwjd3eqn5d9y6"
+      "polytone:voice": "osmo1r7zzuk6sawm794cm9xeuf3c9wm6wj6dv9ef7z47u4mf95fa489hq0qse9g",
+      "polytone:voice | provider": "osmo1gnq8mnxjtwhzhfdrrktd5nv26vx7mzmcm2kmnjexdge2yezlzkusk372uj"
     }
   },
   "osmosis-1": {
@@ -162,18 +160,14 @@
       "polytone:voice": 4541
     },
     "default": {
-      "polytone:note": "",
+      "polytone:note": "neutron19plwskaht4dlgjde8v986eu6pzsh5zk8x9usmnzzaa287kxuemzqduwvxq",
       "polytone:note | harpoon-4": "neutron136k8kgtydz69vuxh28ncaz4y5ycha4xvfwmw39eseh5kt3e86cvs2w7mww",
-      "polytone:note | osmo-test-5": "neutron1r8ly8q5tw9esmh7fyv50ue6n83fym7c97rndju58eglkzwed45rse6dx9k",
       "polytone:note | provider": "neutron144qdp072puq5qfg5dhcu55fu2eemz3nan8kqkmqs0t0vaz8qdwqs4ssjs3",
       "polytone:note | uni-6": "neutron1vmwglwdelzh80kuasukd9v4s4cdxzpqy83hej35wg3gca4xcs9sq6nk5wx",
-      "polytone:note | xion-testnet-1": "neutron19mzewj7nhrylkn5wtgel6v2ukje098v3ulkljtkafpn5hjelednsfeewug",
-      "polytone:voice": "no-address-registered",
+      "polytone:voice": "neutron1p84j33k7sr6eah2w4nz5upn7e30dmkdrvpj7zq64x6dga645jr0qsaffgw",
       "polytone:voice | harpoon-4": "neutron1ktyrnqw7uf7v4d3c3x7vrsrrgw449ncecrue2ptaqn0l2yjpm5mqt0dv7x",
-      "polytone:voice | osmo-test-5": "neutron1l5el0ftj4dj4fewvdx62n72ljg9lpd9tunt8pmgx3dm8aawerprsstktd9",
       "polytone:voice | provider": "neutron15y7uc96e92tcm6lamdlj38kyy5fkg5f6qxp8g3yyqdewlhffgces3y0495",
-      "polytone:voice | uni-6": "neutron1k6tcga9aka7dtcyza39fu50n8f6tz9wmv4uawm8tad2a34ahjchs0whe95",
-      "polytone:voice | xion-testnet-1": "neutron1zl8l8lzyqr2uxrctwajcchgfps7x6aq0fdtczwkyzxp66aueyz2qu6f0q4"
+      "polytone:voice | uni-6": "neutron1k6tcga9aka7dtcyza39fu50n8f6tz9wmv4uawm8tad2a34ahjchs0whe95"
     }
   },
   "provider": {
@@ -226,12 +220,8 @@
       "polytone:voice": 511
     },
     "default": {
-      "polytone:note": "no-address-registered",
-      "polytone:note | osmo-test-5": "xion1865cwl52qzfrcgrzyswxdqhlyuqpyamppr5evj9ja2zy7at8gd6s4u7kd2",
-      "polytone:note | pion-1": "xion18eh7m9wdk493y47l0uwc3nqkkxd4qvnsd9t8z80heatyw7j6dd9qdghjsa",
-      "polytone:voice": "no-address-registered",
-      "polytone:voice | osmo-test-5": "xion17dnqgzrd8cq6sph4gmdx4phg47agzkd2mna34hm0xpcumewx0v4s57xhtu",
-      "polytone:voice | pion-1": "xion1hakcf4p6h0urj7nkznm3qvfstdtcw5hsfff2vkzys8fwqw7688vqex5x6w"
+      "polytone:note": "xion1x0246zy3m2gkcy0ewy03usl2wkdr96sknclctnp5t9sevlg46lnqahwlej",
+      "polytone:voice": "xion1cmhrvl03ddgyxn22jplv3qxr7c6lq7clnehd4fxfr54sd9htga2slf4g3a"
     }
   }
 }
