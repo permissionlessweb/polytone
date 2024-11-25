@@ -172,13 +172,6 @@ impl<Chain: CwEnv + IbcQueryHandler> Polytone<Chain> {
         self.instantiate_note(None)?;
         dst.instantiate_voice(None)?;
 
-        interchain.create_contract_channel(
-            &self.note,
-            &dst.voice,
-            "polytone-1",
-            Some(IbcOrder::Unordered),
-        )?;
-
         let polytone_connection = PolytoneConnection::load_from(
             self.note.environment().clone(),
             dst.voice.environment().clone(),
@@ -190,6 +183,14 @@ impl<Chain: CwEnv + IbcQueryHandler> Polytone<Chain> {
         // We reset the state, this object shouldn't have registered addresses in a normal flow
         self.note.remove_address();
         dst.voice.remove_address();
+
+        // Doing this last as it will has all chances of being cancelled
+        interchain.create_contract_channel(
+            &polytone_connection.note,
+            &polytone_connection.voice,
+            "polytone-1",
+            Some(IbcOrder::Unordered),
+        )?;
 
         Ok(polytone_connection)
     }

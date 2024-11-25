@@ -107,7 +107,7 @@
       "polytone:voice": 8079
     },
     "default": {
-      "polytone:note": "osmo13pq0nw3dctk3e0aqp9r5vrm2cd55y5qdhmfdssaec6qlypkrq54q45sspx",
+      "polytone:note": null,
       "polytone:note | provider": "osmo1p7mx609vsg753qqvfgy7fhcj79urrvftkrd5rkjwnx3zfmfusr3qv4j4nt",
       "polytone:voice": "osmo1r7zzuk6sawm794cm9xeuf3c9wm6wj6dv9ef7z47u4mf95fa489hq0qse9g",
       "polytone:voice | provider": "osmo1gnq8mnxjtwhzhfdrrktd5nv26vx7mzmcm2kmnjexdge2yezlzkusk372uj"
@@ -221,7 +221,7 @@
     },
     "default": {
       "polytone:note": "xion1x0246zy3m2gkcy0ewy03usl2wkdr96sknclctnp5t9sevlg46lnqahwlej",
-      "polytone:voice": "xion1cmhrvl03ddgyxn22jplv3qxr7c6lq7clnehd4fxfr54sd9htga2slf4g3a"
+      "polytone:voice": null
     }
   }
 }
