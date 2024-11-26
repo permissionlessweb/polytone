@@ -2,7 +2,6 @@ use abstract_cw_orch_polytone::PolytoneConnection;
 use clap::Parser;
 use cw_orch::daemon::DaemonState;
 use cw_orch::prelude::*;
-use cw_orch_interchain::prelude::*;
 use networks::parse_network;
 use polytone_note::msg::QueryMsgFns;
 
@@ -43,7 +42,7 @@ fn connect(
 
     let connection = PolytoneConnection::load_from(src_daemon.clone(), dst_daemon.clone());
 
-    let src_channel = connection.note.active_channel()?;
+    let _src_channel = connection.note.active_channel()?;
 
     Ok(())
 }
