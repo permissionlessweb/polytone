@@ -1,7 +1,7 @@
 use std::{collections::HashMap, fs::File};
 
 use cosmwasm_std::Addr;
-use cw_orch::{core::serde_json, prelude::*};
+use cw_orch::{core::serde_json, daemon::DeployedChains, prelude::*};
 
 use crate::{
     deploy::{POLYTONE_NOTE, POLYTONE_VOICE},
@@ -27,10 +27,9 @@ impl<Chain: CwEnv> Polytone<Chain> {
             return vec![];
         };
         let env_info = self.note.environment().env_info();
-        let contracts: HashMap<String, String> = cw_orch::core::serde_json::from_value(
-            state[env_info.chain_name][env_info.chain_id]["default"].clone(),
-        )
-        .unwrap();
+        let contracts: HashMap<String, String> =
+            cw_orch::core::serde_json::from_value(state[env_info.chain_id]["default"].clone())
+                .unwrap();
 
         // Sort notes and voices
         let mut notes = HashMap::new();

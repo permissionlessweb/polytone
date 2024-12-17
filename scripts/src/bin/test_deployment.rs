@@ -17,7 +17,7 @@ fn verify_deployment(src_chain: ChainInfo, dst_chain: ChainInfo) -> anyhow::Resu
         .state(src_daemon.state())
         .build()?;
 
-    let interchain = DaemonInterchainEnv::from_daemons(
+    let interchain = DaemonInterchain::from_daemons(
         vec![src_daemon.clone(), dst_daemon.clone()],
         &ChannelCreationValidator,
     );

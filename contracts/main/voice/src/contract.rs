@@ -108,7 +108,9 @@ pub fn execute(
                                 deps.querier.query_wasm_code_info(code_id)?;
                             let salt = salt(&connection_id, &counterparty_port, &sender);
                             let proxy = deps.api.addr_humanize(&instantiate2_address(
-                                &checksum, &contract, &salt,
+                                checksum.as_slice(),
+                                &contract,
+                                &salt,
                             )?)?;
                             SENDER_TO_PROXY.save(
                                 deps.storage,

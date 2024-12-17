@@ -26,7 +26,7 @@ fn instantiate_two_chains(src_chain: ChainInfo, dst_chain: ChainInfo) -> anyhow:
     let dst_polytone = Polytone::load_from(dst_daemon.clone())?;
 
     let interchain =
-        DaemonInterchainEnv::from_daemons(vec![src_daemon, dst_daemon], &ChannelCreationValidator);
+        DaemonInterchain::from_daemons(vec![src_daemon, dst_daemon], &ChannelCreationValidator);
 
     src_polytone.connect(&dst_polytone, &interchain)?;
 

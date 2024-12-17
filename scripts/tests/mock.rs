@@ -1,4 +1,4 @@
-use cw_orch_interchain::MockInterchainEnv;
+use cw_orch_interchain::mock::MockInterchainEnv;
 use cw_orch_polytone::PolytoneConnection;
 
 #[test]

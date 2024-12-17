@@ -4,9 +4,10 @@ use crate::utils::read_json;
 use crate::{interchain::PolytoneConnection, PolytoneNote, PolytoneProxy, PolytoneVoice};
 use cosmwasm_std::IbcOrder;
 use cw_orch::core::serde_json::Value;
+use cw_orch::daemon::DeployedChains;
 use cw_orch::prelude::*;
-use cw_orch_interchain::InterchainError;
-use cw_orch_interchain::{IbcQueryHandler, InterchainEnv};
+use cw_orch_interchain::core::InterchainError;
+use cw_orch_interchain::core::{IbcQueryHandler, InterchainEnv};
 
 use crate::Polytone;
 
@@ -50,12 +51,17 @@ impl<Chain: CwEnv> Deploy<Chain> for Polytone<Chain> {
 
     fn load_from(chain: Chain) -> Result<Self, Self::Error> {
         // This only loads the code-ids, because this structure only holds Polytone Code Ids
-        let mut polytone = Self::new(chain);
+        let mut polytone = Self::new(chain.clone());
         // We register all the code_id default state
-        polytone.set_contracts_state(None);
+        if chain.can_load_state_from_state_file() {
+            polytone.set_contracts_state(None);
+        }
+
         Ok(polytone)
     }
+}
 
+impl<Chain: CwEnv> DeployedChains<Chain> for Polytone<Chain> {
     /// This allows loading only the code_ids from the state, because addresses are not relevant for this Structure
     fn set_contracts_state(&mut self, custom_state: Option<Value>) {
         let state;
@@ -82,8 +88,6 @@ impl<Chain: CwEnv> Deploy<Chain> for Polytone<Chain> {
             // We try to get the code_id for the contract
             if contract.code_id().is_err() {
                 let code_id = state
-                    .get(env_info.chain_name.clone())
-                    .unwrap_or(&Value::Null)
                     .get(env_info.chain_id.to_string())
                     .unwrap_or(&Value::Null)
                     .get("code_ids")
@@ -139,7 +143,7 @@ impl<Chain: CwEnv> Polytone<Chain> {
                 block_max_gas: MAX_BLOCK_GAS.into(),
             },
             admin.map(Addr::unchecked).as_ref(),
-            None,
+            &[],
         )
     }
 
@@ -153,7 +157,7 @@ impl<Chain: CwEnv> Polytone<Chain> {
                 block_max_gas: MAX_BLOCK_GAS.into(),
             },
             admin.map(Addr::unchecked).as_ref(),
-            None,
+            &[],
         )
     }
 }
@@ -168,13 +172,6 @@ impl<Chain: CwEnv + IbcQueryHandler> Polytone<Chain> {
         self.instantiate_note(None)?;
         dst.instantiate_voice(None)?;
 
-        interchain.create_contract_channel(
-            &self.note,
-            &dst.voice,
-            "polytone-1",
-            Some(IbcOrder::Unordered),
-        )?;
-
         let polytone_connection = PolytoneConnection::load_from(
             self.note.environment().clone(),
             dst.voice.environment().clone(),
@@ -186,6 +183,14 @@ impl<Chain: CwEnv + IbcQueryHandler> Polytone<Chain> {
         // We reset the state, this object shouldn't have registered addresses in a normal flow
         self.note.remove_address();
         dst.voice.remove_address();
+
+        // Doing this last as it will has all chances of being cancelled
+        interchain.create_contract_channel(
+            &polytone_connection.note,
+            &polytone_connection.voice,
+            "polytone-1",
+            Some(IbcOrder::Unordered),
+        )?;
 
         Ok(polytone_connection)
     }
@@ -199,7 +204,6 @@ impl<Chain: CwEnv + IbcQueryHandler> Polytone<Chain> {
             self.note.environment().clone(),
             dst.voice.environment().clone(),
         );
-
         if polytone_connection.note.address().is_ok() && polytone_connection.voice.address().is_ok()
         {
             return Ok(polytone_connection);
