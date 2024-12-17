@@ -29,7 +29,7 @@ dependencies = [
 
 [[package]]
 name = "abstract-cw-orch-polytone"
-version = "6.0.0"
+version = "6.0.1"
 dependencies = [
  "abstract-polytone-note",
  "abstract-polytone-proxy",
