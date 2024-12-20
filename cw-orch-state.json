@@ -124,18 +124,22 @@
       "polytone:voice": 128
     },
     "default": {
+      "polytone:note": null,
       "polytone:note | archway-1": "osmo14528h5e3c9knxzp82tex0gehhwx2qmz7fm32ntk6yluas27aknssrqkled",
       "polytone:note | juno-1": "osmo1zu9sa2yu9ffdk6pxsgjzgp56wqgyzdh8e0ndn7crr3d0xhvtj8uqdv3dqa",
       "polytone:note | kaiyo-1": "osmo174mke7nylzwylaerfk6j8epzy5yxnvnfvrlx6gy2j0sq8sjf80lsw6skfn",
       "polytone:note | neutron-1": "osmo10j4qku3lzsqayyq6uhta4pzkv4fc97w3em9mjaxtvmv84y0fcats96lv89",
       "polytone:note | phoenix-1": "osmo1sa5yvr9pvxd8eh2wjmfj4c2cqvsxxs49ztn7e2pxtc4zxeet6e7spawtnd",
       "polytone:note | stargaze-1": "osmo1u44zc3vq37npnctdwd35n7ms3wtagfhdvdnpscq86pk6h9rmzpcsdqe992",
+      "polytone:note | xion-mainnet-1": "osmo1qsx3zmwcfayl3d27mf22f4d4mc0ge727vfga2553533lzcawsw7q8ufall",
+      "polytone:voice": null,
       "polytone:voice | archway-1": "osmo1kju3qsgcfwfuhqdrwm623xrf7hn3lmp2scaznxn75r3mlv36x4xsc7lnz2",
       "polytone:voice | juno-1": "osmo1af93h8xcszszes2a0kjms5zpm5ns3fys4aez2f40fgz428hc8aws28klzs",
       "polytone:voice | kaiyo-1": "osmo1546fnys90560am2jzuzsl0csmqc502g8ywgwpf3q9jdfucyr93jq7urvlm",
       "polytone:voice | neutron-1": "osmo1vw02frqejfw2v2w7dy6ws35jp9743dwkxy0laalwsuvzzvkszz7s8d93yw",
       "polytone:voice | phoenix-1": "osmo16e9r336pjs5jkg3yk6l8p7mkwzdggn4ceea2zg7e0506ds3af2jsha2whq",
-      "polytone:voice | stargaze-1": "osmo13w3073l43gwxw77tv2np2katn3jrvet87unyfevg8nrj755m3x7q0aaw63"
+      "polytone:voice | stargaze-1": "osmo13w3073l43gwxw77tv2np2katn3jrvet87unyfevg8nrj755m3x7q0aaw63",
+      "polytone:voice | xion-mainnet-1": "osmo1pd2tw9230k9qhzq046yrkel940x93732pq5c3mcqrnahj3ekhw7q64tfwr"
     }
   },
   "phoenix-1": {
@@ -219,6 +223,19 @@
     "default": {
       "polytone:note | pion-1": "juno1jjvhefnmwgw53qpm66uevut4rqdjehx7xjhkgg9q6nt90velrcxq29czjg",
       "polytone:voice | pion-1": "juno10sgs8lca6pejrup53w8pwwfwynerx8lv6p2djly7jdagcnjg8tpstj7sw6"
+    }
+  },
+  "xion-mainnet-1": {
+    "code_ids": {
+      "polytone:note": 4,
+      "polytone:proxy": 2,
+      "polytone:voice": 3
+    },
+    "default": {
+      "polytone:note": null,
+      "polytone:note | osmosis-1": "xion1hs95lgvuy0p6jn4v7js5x8plfdqw867lsuh5xv6d2ua20jprkges7as2wd",
+      "polytone:voice": null,
+      "polytone:voice | osmosis-1": "xion1mv8luxmtt2afvvldtufg9ht8ut9ff6r4tpqac8792f4efhdg04kqkmg7e0"
     }
   },
   "xion-testnet-1": {
