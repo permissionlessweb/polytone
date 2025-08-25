@@ -11,7 +11,7 @@ edition = "2021"
 license = "BSD-3-Clause"
 repository = "https://github.com/DA0-DA0/polytone"
 rust-version = "1.67"
-version = "2.0.0"
+version = "3.0.0-rc"
 
 [profile.release]
 codegen-units = 1
@@ -31,11 +31,11 @@ polytone-note = { package = "abstract-polytone-note", path = "contracts/main/not
 polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice", version = "5.0.0" }
 cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone", version = "6.0.0" }
 
-cosmwasm-schema = "2.0.0"
-cosmwasm-std = { version = "2.0.0", features = ["stargate"] }
-cw-storage-plus = "2.0.0"
-cw-utils = "2.0.0"
-cw2 = "2.0.0"
+cosmwasm-schema = "3.0.0"
+cosmwasm-std = { version = "3.0.0", features = ["stargate"] }
+cw-storage-plus = "3.0.0"
+cw-utils = "3.0.0"
+cw2 = "3.0.0"
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 thiserror = "1.0.31"
@@ -47,8 +47,8 @@ sha2 = "0.10.6"
 
 # dev-dependencies
 
-cw-orch = { version = "0.27.0" }
-cw-orch-interchain = { version = "0.8.1" }
+cw-orch = { version = "0.30.0", path = "../cw-orchestrator/cw-orch" }
+cw-orch-interchain = { version = "0.8.1", path = "../cw-orchestrator/cw-orch-interchain" }
 
-cw-multi-test = "2.0.0"
+cw-multi-test = "3.0.0"
 anyhow = { version = "1.0.51" }

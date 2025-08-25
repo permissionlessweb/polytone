@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use crate::utils::read_json;
 use crate::{interchain::PolytoneConnection, PolytoneNote, PolytoneProxy, PolytoneVoice};
-use cosmwasm_std::IbcOrder;
+use cosmwasm_std::{IbcOrder, StdError};
 use cw_orch::core::serde_json::Value;
 use cw_orch::daemon::DeployedChains;
 use cw_orch::prelude::*;
@@ -169,7 +169,7 @@ impl<Chain: CwEnv + IbcQueryHandler> Polytone<Chain> {
     ) -> Result<PolytoneConnection<Chain>, InterchainError> {
         // We create a channel between the 2 polytone instances
 
-        self.instantiate_note(None)?;
+        self.instantiate_note(None).map_err(StdError::msg)?;
         dst.instantiate_voice(None)?;
 
         let polytone_connection = PolytoneConnection::load_from(

@@ -28,13 +28,27 @@ pub struct CallbackMessage {
     pub result: Callback,
 }
 
+/// Wrapper for query results to work with cosmwasm-schema 3.0
+#[cw_serde]
+pub enum QueryCallbackResult {
+    Success(Vec<Binary>),
+    Error(ErrorResponse),
+}
+
+/// Wrapper for execution results to work with cosmwasm-schema 3.0
+#[cw_serde]
+pub enum ExecutionCallbackResult {
+    Success(ExecutionResponse),
+    Error(String),
+}
+
 #[cw_serde]
 pub enum Callback {
     /// Result of executing the requested query, or an error.
     ///
     /// result[i] corresponds to the i'th query and contains the
     /// base64 encoded query response.
-    Query(Result<Vec<Binary>, ErrorResponse>),
+    Query(QueryCallbackResult),
 
     /// Result of executing the requested messages, or an error.
     ///
@@ -44,7 +58,7 @@ pub enum Callback {
     /// error string will only tell you the error's codespace. for
     /// example, an out-of-gas error is code 11 and looks like
     /// `codespace: sdk, code: 11`.
-    Execute(Result<ExecutionResponse, String>),
+    Execute(ExecutionCallbackResult),
 
     /// An error occured that could not be recovered from. The only
     /// known way that this can occur is message handling running out
@@ -136,9 +150,10 @@ pub fn on_ack(
     let result = unmarshal_ack(acknowledgement);
 
     let executed_by = match result {
-        Callback::Execute(Ok(ExecutionResponse {
-            ref executed_by, ..
-        })) => Some(executed_by.clone()),
+        Callback::Execute(ref e) => match e {
+            ExecutionCallbackResult::Success(res) => Some(res.executed_by.clone()),
+            ExecutionCallbackResult::Error(_) => None,
+        },
         _ => None,
     };
     let callback_message = dequeue_callback(
@@ -160,8 +175,8 @@ pub fn on_timeout(
     let request = dequeue_callback(storage, packet.src.channel_id.clone(), packet.sequence)?;
     let timeout = "timeout".to_string();
     let result = match request.request_type {
-        CallbackRequestType::Execute => Callback::Execute(Err(timeout)),
-        CallbackRequestType::Query => Callback::Query(Err(ErrorResponse {
+        CallbackRequestType::Execute => Callback::Execute(ExecutionCallbackResult::Error(timeout)),
+        CallbackRequestType::Query => Callback::Query(QueryCallbackResult::Error(ErrorResponse {
             message_index: Uint64::zero(),
             error: timeout,
         })),

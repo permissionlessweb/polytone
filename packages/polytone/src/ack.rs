@@ -1,7 +1,9 @@
 use cosmwasm_std::{from_json, to_json_binary, Binary, IbcAcknowledgement, SubMsgResponse, Uint64};
 
 pub use crate::callbacks::Callback;
-use crate::callbacks::{ErrorResponse, ExecutionResponse};
+use crate::callbacks::{
+    ErrorResponse, ExecutionCallbackResult, ExecutionResponse, QueryCallbackResult,
+};
 
 /// wasmd 0.32+ will not return a hardcoded ICS-20 ACK if
 /// ibc_packet_receive errors [1] so we can safely use an ACK format
@@ -12,30 +14,33 @@ pub type Ack = Callback;
 
 /// Serializes an ACK-SUCCESS containing the provided data.
 pub fn ack_query_success(result: Vec<Binary>) -> Binary {
-    to_json_binary(&Callback::Query(Ok(result))).unwrap()
+    to_json_binary(&Callback::Query(QueryCallbackResult::Success(result))).unwrap()
 }
 
 /// Serializes an ACK-SUCCESS for a query that failed.
 pub fn ack_query_fail(message_index: Uint64, error: String) -> Binary {
-    to_json_binary(&Callback::Query(Err(ErrorResponse {
-        message_index,
-        error,
-    })))
+    to_json_binary(&Callback::Query(QueryCallbackResult::Error(
+        ErrorResponse {
+            message_index,
+            error,
+        },
+    )))
     .unwrap()
 }
 
 /// Serializes an ACK-SUCCESS for execution that succeeded.
 pub fn ack_execute_success(result: Vec<SubMsgResponse>, executed_by: String) -> Binary {
-    to_json_binary(&Callback::Execute(Ok(ExecutionResponse {
-        result,
-        executed_by,
-    })))
+    to_json_binary(&Callback::Execute(ExecutionCallbackResult::Success(
+        ExecutionResponse {
+            result,
+            executed_by,
+        },
+    )))
     .unwrap()
 }
-
 /// Serializes an ACK-SUCCESS for execution that failed.
 pub fn ack_execute_fail(error: String) -> Binary {
-    to_json_binary(&Callback::Execute(Err(error))).unwrap()
+    to_json_binary(&Callback::Execute(ExecutionCallbackResult::Error(error))).unwrap()
 }
 
 /// Serializes an ACK-FAIL containing the provided error.
