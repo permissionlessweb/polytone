@@ -1,0 +1,47 @@
+[package]
+name = "evm-note"
+authors = ["ekez <ekez@withoutdoing.com>"]
+description = "Sends messages to be executed on other chains over IBC."
+version = "0.3.1"
+edition = "2021"
+license = "GPL-3.0-or-later"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+# disables #[entry_point] (i.e. instantiate/execute/query) export
+library = []
+
+# This is here inspite of the warnings to make sure it is not missed
+# if the contract is taken out of the workspace
+[profile.release]
+codegen-units = 1
+debug = false
+debug-assertions = false
+incremental = false
+lto = true
+opt-level = 3
+overflow-checks = true   # very important, do not turn these off.
+panic = 'abort'
+rpath = false
+
+[dependencies]
+polytone-evm = { workspace = true }
+cw-orch = { workspace = true }
+
+cosmwasm-schema = { workspace = true }
+cosmwasm-std = { workspace = true, features = ["stargate"] }
+cw-storage-plus = { workspace = true }
+cw-utils = { workspace = true }
+cw2 = "3.0.0"
+thiserror = "1.0.31"
+alloy = "1.0.25"    
+alloy-sol-types = "1.3.1"  
+
+cw-asset = { version = "4.0.0", git = "https://github.com/permissionlessweb/cw-asset" }
+
+[dev-dependencies]
+anyhow = "1.0.86"
+evm-note = { path = "." }
+cw-multi-test = "3.0"

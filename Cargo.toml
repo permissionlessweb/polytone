@@ -25,6 +25,7 @@ panic = 'abort'
 rpath = false
 
 [workspace.dependencies]
+polytone-evm = { path = "packages/polytone-evm", version = "2.0.0" }
 polytone = { package = "abstract-polytone", path = "packages/polytone", version = "2.0.0" }
 polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy", version = "5.0.0" }
 polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note", version = "5.0.0" }
