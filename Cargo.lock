@@ -1350,18 +1350,18 @@ dependencies = [
 [[package]]
 name = "cw-orch"
 version = "0.30.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "anyhow",
  "cosmrs",
  "cosmwasm-std",
  "cw-orch-contract-derive",
- "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
- "cw-orch-daemon 0.29.0 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-core",
+ "cw-orch-daemon",
  "cw-orch-fns-derive",
- "cw-orch-mock 0.24.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
- "cw-orch-networks 0.24.10 (git+https://github.com/permissionlessweb/cw-orchestrator)",
- "cw-orch-traits 0.25.0 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-mock",
+ "cw-orch-networks",
+ "cw-orch-traits",
  "cw-utils",
  "hex",
  "log",
@@ -1374,7 +1374,7 @@ dependencies = [
 [[package]]
 name = "cw-orch-contract-derive"
 version = "0.21.1"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "convert_case",
  "quote",
@@ -1384,25 +1384,7 @@ dependencies = [
 [[package]]
 name = "cw-orch-core"
 version = "2.1.4"
-dependencies = [
- "abstract-cw-multi-test",
- "anyhow",
- "cosmos-sdk-proto 0.28.0",
- "cosmwasm-std",
- "cw-storage-plus",
- "cw-utils",
- "dirs",
- "log",
- "serde",
- "serde_json",
- "sha2 0.10.9",
- "thiserror 1.0.69",
-]
-
-[[package]]
-name = "cw-orch-core"
-version = "2.1.4"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "abstract-cw-multi-test",
  "anyhow",
@@ -1421,6 +1403,7 @@ dependencies = [
 [[package]]
 name = "cw-orch-daemon"
 version = "0.29.0"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "anyhow",
  "async-recursion",
@@ -1432,56 +1415,9 @@ dependencies = [
  "chrono",
  "cosmrs",
  "cosmwasm-std",
- "cw-orch-core 2.1.4",
- "cw-orch-networks 0.24.10",
- "cw-orch-traits 0.25.0",
- "dirs",
- "ed25519-dalek",
- "eyre",
- "file-lock",
- "flate2",
- "hex",
- "http 1.2.0",
- "ibc-proto 0.52.0",
- "lazy_static",
- "libc-print",
- "log",
- "once_cell",
- "prost 0.14.1",
- "prost-types",
- "rand_core",
- "reqwest 0.12.9",
- "ring",
- "ripemd",
- "schemars 0.8.22",
- "serde",
- "serde_json",
- "sha2 0.10.9",
- "thiserror 1.0.69",
- "tokio",
- "toml",
- "tonic 0.14.1",
- "uid",
-]
-
-[[package]]
-name = "cw-orch-daemon"
-version = "0.29.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
-dependencies = [
- "anyhow",
- "async-recursion",
- "base16",
- "base64 0.22.1",
- "bech32 0.11.0",
- "bip39",
- "bitcoin 0.32.5",
- "chrono",
- "cosmrs",
- "cosmwasm-std",
- "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
- "cw-orch-networks 0.24.10 (git+https://github.com/permissionlessweb/cw-orchestrator)",
- "cw-orch-traits 0.25.0 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-core",
+ "cw-orch-networks",
+ "cw-orch-traits",
  "dirs",
  "ed25519-dalek",
  "eyre",
@@ -1514,7 +1450,7 @@ dependencies = [
 [[package]]
 name = "cw-orch-fns-derive"
 version = "0.23.1"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "convert_case",
  "proc-macro2",
@@ -1525,6 +1461,7 @@ dependencies = [
 [[package]]
 name = "cw-orch-interchain"
 version = "0.8.1"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "cosmwasm-std",
  "cw-orch-interchain-core",
@@ -1540,13 +1477,14 @@ dependencies = [
 [[package]]
 name = "cw-orch-interchain-core"
 version = "0.9.2"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "base64 0.22.1",
  "cosmwasm-schema",
  "cosmwasm-std",
- "cw-orch-core 2.1.4",
- "cw-orch-daemon 0.29.0",
- "cw-orch-mock 0.24.4",
+ "cw-orch-core",
+ "cw-orch-daemon",
+ "cw-orch-mock",
  "futures",
  "ibc-relayer-types",
  "log",
@@ -1561,14 +1499,15 @@ dependencies = [
 [[package]]
 name = "cw-orch-interchain-daemon"
 version = "0.9.0"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "async-recursion",
  "base64 0.22.1",
  "cosmrs",
  "cosmwasm-schema",
  "cosmwasm-std",
- "cw-orch-core 2.1.4",
- "cw-orch-daemon 0.29.0",
+ "cw-orch-core",
+ "cw-orch-daemon",
  "cw-orch-interchain-core",
  "cw-orch-starship",
  "derive_builder",
@@ -1589,13 +1528,14 @@ dependencies = [
 [[package]]
 name = "cw-orch-interchain-mock"
 version = "0.9.0"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "anyhow",
  "cosmrs",
  "cosmwasm-std",
- "cw-orch-core 2.1.4",
+ "cw-orch-core",
  "cw-orch-interchain-core",
- "cw-orch-mock 0.24.4",
+ "cw-orch-mock",
  "cw-utils",
  "ibc-relayer-types",
  "log",
@@ -1607,26 +1547,12 @@ dependencies = [
 [[package]]
 name = "cw-orch-mock"
 version = "0.24.4"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "abstract-cw-multi-test",
  "cosmos-sdk-proto 0.28.0",
  "cosmwasm-std",
- "cw-orch-core 2.1.4",
- "cw-utils",
- "log",
- "serde",
- "sha2 0.10.9",
-]
-
-[[package]]
-name = "cw-orch-mock"
-version = "0.24.4"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
-dependencies = [
- "abstract-cw-multi-test",
- "cosmos-sdk-proto 0.28.0",
- "cosmwasm-std",
- "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-core",
  "cw-utils",
  "log",
  "serde",
@@ -1636,27 +1562,20 @@ dependencies = [
 [[package]]
 name = "cw-orch-networks"
 version = "0.24.10"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
- "cw-orch-core 2.1.4",
- "serde",
-]
-
-[[package]]
-name = "cw-orch-networks"
-version = "0.24.10"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
-dependencies = [
- "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-core",
  "serde",
 ]
 
 [[package]]
 name = "cw-orch-starship"
 version = "0.7.0"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
  "cosmwasm-std",
- "cw-orch-core 2.1.4",
- "cw-orch-daemon 0.29.0",
+ "cw-orch-core",
+ "cw-orch-daemon",
  "env_logger 0.11.6",
  "ibc-chain-registry",
  "ibc-relayer-types",
@@ -1675,17 +1594,9 @@ dependencies = [
 [[package]]
 name = "cw-orch-traits"
 version = "0.25.0"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#ff94f0474bda8a420cfd61c67199b2eacc768f9f"
 dependencies = [
- "cw-orch-core 2.1.4",
- "prost-types",
-]
-
-[[package]]
-name = "cw-orch-traits"
-version = "0.25.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
-dependencies = [
- "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-core",
  "prost-types",
 ]
 
@@ -3030,7 +2941,7 @@ dependencies = [
 [[package]]
 name = "ibc-proto"
 version = "0.52.0"
-source = "git+https://github.com/permissionlessweb/ibc-proto-rs?branch=prost0.14.1#ff3c597df8adfc6828de9a5baa63db7d4036adcc"
+source = "git+https://github.com/permissionlessweb/ibc-proto-rs#2386929c0f008c12b30bd086617333d3717e1c33"
 dependencies = [
  "base64 0.22.1",
  "bytes",
