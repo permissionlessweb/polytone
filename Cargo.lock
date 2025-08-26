@@ -4,9 +4,9 @@ version = 3
 
 [[package]]
 name = "abstract-cw-multi-test"
-version = "3.0.1"
+version = "3.0.0-rc"
+source = "git+https://github.com/permissionlessweb/cw-multi-test-fork?branch=bump/cw3/official-ibc-fork#b5342d1e73c0bca8410491df38f670f2298ece2e"
 dependencies = [
- "anyhow",
  "bech32 0.11.0",
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -14,9 +14,9 @@ dependencies = [
  "cw-utils",
  "cw20-ics20",
  "hex",
- "itertools 0.13.0",
+ "itertools 0.14.0",
  "log",
- "prost 0.13.4",
+ "prost 0.14.1",
  "schemars 0.8.22",
  "serde",
  "serde_json",
@@ -1050,20 +1050,11 @@ version = "0.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "462e1f6a8e005acc8835d32d60cbd7973ed65ea2a8d8473830e675f050956427"
 dependencies = [
- "informalsystems-pbjson",
+ "informalsystems-pbjson 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "prost 0.13.4",
  "serde",
- "tendermint-proto",
+ "tendermint-proto 0.40.0",
  "tonic 0.12.3",
-]
-
-[[package]]
-name = "cosmos-sdk-proto"
-version = "0.27.0"
-dependencies = [
- "prost 0.13.4",
- "tendermint-proto",
- "tonic 0.13.1",
 ]
 
 [[package]]
@@ -1073,16 +1064,30 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "95ac39be7373404accccaede7cc1ec942ccef14f0ca18d209967a756bf1dbb1f"
 dependencies = [
  "prost 0.13.4",
- "tendermint-proto",
+ "tendermint-proto 0.40.0",
  "tonic 0.13.1",
 ]
 
 [[package]]
+name = "cosmos-sdk-proto"
+version = "0.28.0"
+source = "git+https://github.com/permissionlessweb/cosmos-rust#66b0c8fcf6f8b51b364bac35fe3683c8427507bf"
+dependencies = [
+ "bytes",
+ "http-body-util",
+ "prost 0.14.1",
+ "tendermint-proto 0.40.4",
+ "tonic 0.14.1",
+ "tonic-prost",
+]
+
+[[package]]
 name = "cosmrs"
-version = "0.22.0"
+version = "0.23.0"
+source = "git+https://github.com/permissionlessweb/cosmos-rust#66b0c8fcf6f8b51b364bac35fe3683c8427507bf"
 dependencies = [
  "bip32",
- "cosmos-sdk-proto 0.27.0",
+ "cosmos-sdk-proto 0.28.0",
  "ecdsa",
  "eyre",
  "k256",
@@ -1091,8 +1096,8 @@ dependencies = [
  "serde_json",
  "signature",
  "subtle-encoding",
- "tendermint",
- "tendermint-rpc",
+ "tendermint 0.40.4",
+ "tendermint-rpc 0.40.4",
  "thiserror 1.0.69",
  "tokio",
 ]
@@ -1345,17 +1350,18 @@ dependencies = [
 [[package]]
 name = "cw-orch"
 version = "0.30.0"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
 dependencies = [
  "anyhow",
  "cosmrs",
  "cosmwasm-std",
  "cw-orch-contract-derive",
- "cw-orch-core",
- "cw-orch-daemon",
+ "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-daemon 0.29.0 (git+https://github.com/permissionlessweb/cw-orchestrator)",
  "cw-orch-fns-derive",
- "cw-orch-mock",
- "cw-orch-networks",
- "cw-orch-traits",
+ "cw-orch-mock 0.24.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-networks 0.24.10 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-traits 0.25.0 (git+https://github.com/permissionlessweb/cw-orchestrator)",
  "cw-utils",
  "hex",
  "log",
@@ -1368,6 +1374,7 @@ dependencies = [
 [[package]]
 name = "cw-orch-contract-derive"
 version = "0.21.1"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
 dependencies = [
  "convert_case",
  "quote",
@@ -1380,7 +1387,26 @@ version = "2.1.4"
 dependencies = [
  "abstract-cw-multi-test",
  "anyhow",
- "cosmos-sdk-proto 0.27.0",
+ "cosmos-sdk-proto 0.28.0",
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "cw-utils",
+ "dirs",
+ "log",
+ "serde",
+ "serde_json",
+ "sha2 0.10.9",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "cw-orch-core"
+version = "2.1.4"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+dependencies = [
+ "abstract-cw-multi-test",
+ "anyhow",
+ "cosmos-sdk-proto 0.28.0",
  "cosmwasm-std",
  "cw-storage-plus",
  "cw-utils",
@@ -1406,9 +1432,9 @@ dependencies = [
  "chrono",
  "cosmrs",
  "cosmwasm-std",
- "cw-orch-core",
- "cw-orch-networks",
- "cw-orch-traits",
+ "cw-orch-core 2.1.4",
+ "cw-orch-networks 0.24.10",
+ "cw-orch-traits 0.25.0",
  "dirs",
  "ed25519-dalek",
  "eyre",
@@ -1421,7 +1447,7 @@ dependencies = [
  "libc-print",
  "log",
  "once_cell",
- "prost 0.13.4",
+ "prost 0.14.1",
  "prost-types",
  "rand_core",
  "reqwest 0.12.9",
@@ -1434,13 +1460,61 @@ dependencies = [
  "thiserror 1.0.69",
  "tokio",
  "toml",
- "tonic 0.13.1",
+ "tonic 0.14.1",
+ "uid",
+]
+
+[[package]]
+name = "cw-orch-daemon"
+version = "0.29.0"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+dependencies = [
+ "anyhow",
+ "async-recursion",
+ "base16",
+ "base64 0.22.1",
+ "bech32 0.11.0",
+ "bip39",
+ "bitcoin 0.32.5",
+ "chrono",
+ "cosmrs",
+ "cosmwasm-std",
+ "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-networks 0.24.10 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "cw-orch-traits 0.25.0 (git+https://github.com/permissionlessweb/cw-orchestrator)",
+ "dirs",
+ "ed25519-dalek",
+ "eyre",
+ "file-lock",
+ "flate2",
+ "hex",
+ "http 1.2.0",
+ "ibc-proto 0.52.0",
+ "lazy_static",
+ "libc-print",
+ "log",
+ "once_cell",
+ "prost 0.14.1",
+ "prost-types",
+ "rand_core",
+ "reqwest 0.12.9",
+ "ring",
+ "ripemd",
+ "schemars 0.8.22",
+ "serde",
+ "serde_json",
+ "sha2 0.10.9",
+ "thiserror 1.0.69",
+ "tokio",
+ "toml",
+ "tonic 0.14.1",
  "uid",
 ]
 
 [[package]]
 name = "cw-orch-fns-derive"
 version = "0.23.1"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
 dependencies = [
  "convert_case",
  "proc-macro2",
@@ -1470,18 +1544,18 @@ dependencies = [
  "base64 0.22.1",
  "cosmwasm-schema",
  "cosmwasm-std",
- "cw-orch-core",
- "cw-orch-daemon",
- "cw-orch-mock",
+ "cw-orch-core 2.1.4",
+ "cw-orch-daemon 0.29.0",
+ "cw-orch-mock 0.24.4",
  "futures",
  "ibc-relayer-types",
  "log",
- "prost 0.13.4",
+ "prost 0.14.1",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
  "tokio",
- "tonic 0.13.1",
+ "tonic 0.14.1",
 ]
 
 [[package]]
@@ -1493,8 +1567,8 @@ dependencies = [
  "cosmrs",
  "cosmwasm-schema",
  "cosmwasm-std",
- "cw-orch-core",
- "cw-orch-daemon",
+ "cw-orch-core 2.1.4",
+ "cw-orch-daemon 0.29.0",
  "cw-orch-interchain-core",
  "cw-orch-starship",
  "derive_builder",
@@ -1509,7 +1583,7 @@ dependencies = [
  "serde_json",
  "thiserror 1.0.69",
  "tokio",
- "tonic 0.13.1",
+ "tonic 0.14.1",
 ]
 
 [[package]]
@@ -1519,9 +1593,9 @@ dependencies = [
  "anyhow",
  "cosmrs",
  "cosmwasm-std",
- "cw-orch-core",
+ "cw-orch-core 2.1.4",
  "cw-orch-interchain-core",
- "cw-orch-mock",
+ "cw-orch-mock 0.24.4",
  "cw-utils",
  "ibc-relayer-types",
  "log",
@@ -1535,9 +1609,24 @@ name = "cw-orch-mock"
 version = "0.24.4"
 dependencies = [
  "abstract-cw-multi-test",
- "cosmos-sdk-proto 0.27.0",
+ "cosmos-sdk-proto 0.28.0",
  "cosmwasm-std",
- "cw-orch-core",
+ "cw-orch-core 2.1.4",
+ "cw-utils",
+ "log",
+ "serde",
+ "sha2 0.10.9",
+]
+
+[[package]]
+name = "cw-orch-mock"
+version = "0.24.4"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+dependencies = [
+ "abstract-cw-multi-test",
+ "cosmos-sdk-proto 0.28.0",
+ "cosmwasm-std",
+ "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
  "cw-utils",
  "log",
  "serde",
@@ -1548,7 +1637,16 @@ dependencies = [
 name = "cw-orch-networks"
 version = "0.24.10"
 dependencies = [
- "cw-orch-core",
+ "cw-orch-core 2.1.4",
+ "serde",
+]
+
+[[package]]
+name = "cw-orch-networks"
+version = "0.24.10"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+dependencies = [
+ "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
  "serde",
 ]
 
@@ -1557,8 +1655,8 @@ name = "cw-orch-starship"
 version = "0.7.0"
 dependencies = [
  "cosmwasm-std",
- "cw-orch-core",
- "cw-orch-daemon",
+ "cw-orch-core 2.1.4",
+ "cw-orch-daemon 0.29.0",
  "env_logger 0.11.6",
  "ibc-chain-registry",
  "ibc-relayer-types",
@@ -1578,7 +1676,16 @@ dependencies = [
 name = "cw-orch-traits"
 version = "0.25.0"
 dependencies = [
- "cw-orch-core",
+ "cw-orch-core 2.1.4",
+ "prost-types",
+]
+
+[[package]]
+name = "cw-orch-traits"
+version = "0.25.0"
+source = "git+https://github.com/permissionlessweb/cw-orchestrator#fb27377df54f2742233f41f88dfa1e7f7dd9b5c9"
+dependencies = [
+ "cw-orch-core 2.1.4 (git+https://github.com/permissionlessweb/cw-orchestrator)",
  "prost-types",
 ]
 
@@ -1638,6 +1745,7 @@ dependencies = [
 [[package]]
 name = "cw1"
 version = "3.0.0"
+source = "git+https://github.com/permissionlessweb/cw-plus#c74717433db9fcd86ac408c1b7fbc0c35caefaa3"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -1648,6 +1756,7 @@ dependencies = [
 [[package]]
 name = "cw1-whitelist"
 version = "3.0.0"
+source = "git+https://github.com/permissionlessweb/cw-plus#c74717433db9fcd86ac408c1b7fbc0c35caefaa3"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -1678,6 +1787,7 @@ dependencies = [
 [[package]]
 name = "cw20"
 version = "3.0.0"
+source = "git+https://github.com/permissionlessweb/cw-plus?branch=bump/v3#91fb2f61ac9352933367b4d4728ea4dafacf941c"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -1689,6 +1799,7 @@ dependencies = [
 [[package]]
 name = "cw20-ics20"
 version = "3.0.0"
+source = "git+https://github.com/permissionlessweb/cw-plus?branch=bump/v3#91fb2f61ac9352933367b4d4728ea4dafacf941c"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -2667,12 +2778,12 @@ dependencies = [
 
 [[package]]
 name = "http-body-util"
-version = "0.1.2"
+version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "793429d76616a256bcb62c2a2ec2bed781c8307e797e2598c50010f2bee2544f"
+checksum = "b021d93e26becf5dc7e1b75b1bed1fd93124b374ceb73f43d4d4eafec896a64a"
 dependencies = [
  "bytes",
- "futures-util",
+ "futures-core",
  "http 1.2.0",
  "http-body 1.0.1",
  "pin-project-lite",
@@ -2723,7 +2834,7 @@ dependencies = [
  "httpdate",
  "itoa",
  "pin-project-lite",
- "socket2",
+ "socket2 0.5.8",
  "tokio",
  "tower-service",
  "tracing",
@@ -2846,7 +2957,7 @@ dependencies = [
  "http-body 1.0.1",
  "hyper 1.5.2",
  "pin-project-lite",
- "socket2",
+ "socket2 0.5.8",
  "tokio",
  "tower-service",
  "tracing",
@@ -2892,7 +3003,7 @@ dependencies = [
  "reqwest 0.11.27",
  "serde",
  "serde_json",
- "tendermint-rpc",
+ "tendermint-rpc 0.40.0",
  "tokio",
  "tracing",
 ]
@@ -2907,29 +3018,31 @@ dependencies = [
  "bytes",
  "cosmos-sdk-proto 0.26.1",
  "flex-error",
- "ics23",
- "informalsystems-pbjson",
+ "ics23 0.12.0",
+ "informalsystems-pbjson 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "prost 0.13.4",
  "serde",
  "subtle-encoding",
- "tendermint-proto",
+ "tendermint-proto 0.40.0",
  "tonic 0.12.3",
 ]
 
 [[package]]
 name = "ibc-proto"
 version = "0.52.0"
+source = "git+https://github.com/permissionlessweb/ibc-proto-rs?branch=prost0.14.1#ff3c597df8adfc6828de9a5baa63db7d4036adcc"
 dependencies = [
  "base64 0.22.1",
  "bytes",
- "cosmos-sdk-proto 0.27.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cosmos-sdk-proto 0.28.0",
  "flex-error",
- "ics23",
- "informalsystems-pbjson",
- "prost 0.13.4",
+ "ics23 0.12.1",
+ "informalsystems-pbjson 0.7.0 (git+https://github.com/permissionlessweb/pbjson)",
+ "prost 0.14.1",
  "subtle-encoding",
- "tendermint-proto",
- "tonic 0.13.1",
+ "tendermint-proto 0.40.4",
+ "tonic 0.14.1",
+ "tonic-prost",
 ]
 
 [[package]]
@@ -2981,12 +3094,12 @@ dependencies = [
  "signature",
  "strum",
  "subtle-encoding",
- "tendermint",
+ "tendermint 0.40.0",
  "tendermint-light-client",
  "tendermint-light-client-detector",
  "tendermint-light-client-verifier",
- "tendermint-proto",
- "tendermint-rpc",
+ "tendermint-proto 0.40.0",
+ "tendermint-rpc 0.40.0",
  "thiserror 1.0.69",
  "tiny-bip39",
  "tiny-keccak",
@@ -3009,7 +3122,7 @@ dependencies = [
  "derive_more 0.99.18",
  "flex-error",
  "ibc-proto 0.51.1",
- "ics23",
+ "ics23 0.12.0",
  "itertools 0.13.0",
  "num-rational",
  "primitive-types",
@@ -3019,9 +3132,9 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "subtle-encoding",
- "tendermint",
+ "tendermint 0.40.0",
  "tendermint-light-client-verifier",
- "tendermint-proto",
+ "tendermint-proto 0.40.0",
  "time",
  "tracing",
  "uint",
@@ -3043,7 +3156,7 @@ dependencies = [
  "prometheus",
  "serde",
  "serde_json",
- "tendermint",
+ "tendermint 0.40.0",
  "tokio",
  "tracing",
 ]
@@ -3059,12 +3172,26 @@ dependencies = [
  "blake3",
  "bytes",
  "hex",
- "informalsystems-pbjson",
+ "informalsystems-pbjson 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "prost 0.13.4",
  "ripemd",
  "serde",
  "sha2 0.10.9",
  "sha3",
+]
+
+[[package]]
+name = "ics23"
+version = "0.12.1"
+source = "git+https://github.com/permissionlessweb/ics23?branch=prost-14.1#99df0272bf806e7e066ca41657b32873f8802e03"
+dependencies = [
+ "anyhow",
+ "bytes",
+ "hex",
+ "informalsystems-pbjson 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "prost 0.14.1",
+ "prost-derive 0.14.1",
+ "serde",
 ]
 
 [[package]]
@@ -3252,6 +3379,15 @@ name = "informalsystems-pbjson"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9aa4a0980c8379295100d70854354e78df2ee1c6ca0f96ffe89afeb3140e3a3d"
+dependencies = [
+ "base64 0.21.7",
+ "serde",
+]
+
+[[package]]
+name = "informalsystems-pbjson"
+version = "0.7.0"
+source = "git+https://github.com/permissionlessweb/pbjson#df9ae64ffc106affccdfec2437365f8498ef306d"
 dependencies = [
  "base64 0.21.7",
  "serde",
@@ -3520,9 +3656,9 @@ checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
 
 [[package]]
 name = "libc"
-version = "0.2.169"
+version = "0.2.175"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b5aba8db14291edd000dfcc4d620c7ebfb122c613afb886ca8803fa4e128a20a"
+checksum = "6a82ae493e598baaea5209805c49bbf2ea7de956d50d7da0da1164f9c6d28543"
 
 [[package]]
 name = "libc-print"
@@ -4270,7 +4406,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9120690fafc389a67ba3803df527d0ec9cbbc9cc45e4cc20b332996dfb672425"
 dependencies = [
  "anyhow",
- "itertools 0.13.0",
+ "itertools 0.14.0",
  "proc-macro2",
  "quote",
  "syn 2.0.90",
@@ -4278,11 +4414,11 @@ dependencies = [
 
 [[package]]
 name = "prost-types"
-version = "0.13.4"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc2f1e56baa61e93533aebc21af4d2134b70f66275e0fcdf3cbe43d77ff7e8fc"
+checksum = "b9b4db3d6da204ed77bb26ba83b6122a73aeb2e87e25fbf7ad2e84c4ccbf8f72"
 dependencies = [
- "prost 0.13.4",
+ "prost 0.14.1",
 ]
 
 [[package]]
@@ -4853,7 +4989,7 @@ dependencies = [
  "abstract-cw-orch-polytone",
  "abstract-polytone-note",
  "anyhow",
- "cosmos-sdk-proto 0.27.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cosmos-sdk-proto 0.27.0",
  "cosmwasm-std",
  "cw-orch",
  "cw-orch-interchain",
@@ -5245,6 +5381,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "socket2"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "233504af464074f9d066d7b5416c5f9b894a5862a6506e306f7b816cdd6f1807"
+dependencies = [
+ "libc",
+ "windows-sys 0.59.0",
+]
+
+[[package]]
 name = "speculoos"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5483,7 +5629,36 @@ dependencies = [
  "signature",
  "subtle",
  "subtle-encoding",
- "tendermint-proto",
+ "tendermint-proto 0.40.0",
+ "time",
+ "zeroize",
+]
+
+[[package]]
+name = "tendermint"
+version = "0.40.4"
+source = "git+https://github.com/permissionlessweb/tendermint-rs#ead63760138b7f8f130aabcabd824c621f07abd3"
+dependencies = [
+ "bytes",
+ "digest 0.10.7",
+ "ed25519",
+ "ed25519-consensus",
+ "flex-error",
+ "futures",
+ "k256",
+ "num-traits",
+ "once_cell",
+ "prost 0.14.1",
+ "ripemd",
+ "serde",
+ "serde_bytes",
+ "serde_json",
+ "serde_repr",
+ "sha2 0.10.9",
+ "signature",
+ "subtle",
+ "subtle-encoding",
+ "tendermint-proto 0.40.4",
  "time",
  "zeroize",
 ]
@@ -5497,7 +5672,20 @@ dependencies = [
  "flex-error",
  "serde",
  "serde_json",
- "tendermint",
+ "tendermint 0.40.0",
+ "toml",
+ "url",
+]
+
+[[package]]
+name = "tendermint-config"
+version = "0.40.4"
+source = "git+https://github.com/permissionlessweb/tendermint-rs#ead63760138b7f8f130aabcabd824c621f07abd3"
+dependencies = [
+ "flex-error",
+ "serde",
+ "serde_json",
+ "tendermint 0.40.4",
  "toml",
  "url",
 ]
@@ -5519,9 +5707,9 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "static_assertions",
- "tendermint",
+ "tendermint 0.40.0",
  "tendermint-light-client-verifier",
- "tendermint-rpc",
+ "tendermint-rpc 0.40.0",
  "time",
  "tokio",
  "tracing",
@@ -5542,10 +5730,10 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "static_assertions",
- "tendermint",
+ "tendermint 0.40.0",
  "tendermint-light-client",
- "tendermint-proto",
- "tendermint-rpc",
+ "tendermint-proto 0.40.0",
+ "tendermint-rpc 0.40.0",
  "time",
  "tracing",
 ]
@@ -5559,7 +5747,7 @@ dependencies = [
  "derive_more 0.99.18",
  "flex-error",
  "serde",
- "tendermint",
+ "tendermint 0.40.0",
  "time",
 ]
 
@@ -5572,6 +5760,20 @@ dependencies = [
  "bytes",
  "flex-error",
  "prost 0.13.4",
+ "serde",
+ "serde_bytes",
+ "subtle-encoding",
+ "time",
+]
+
+[[package]]
+name = "tendermint-proto"
+version = "0.40.4"
+source = "git+https://github.com/permissionlessweb/tendermint-rs#ead63760138b7f8f130aabcabd824c621f07abd3"
+dependencies = [
+ "bytes",
+ "flex-error",
+ "prost 0.14.1",
  "serde",
  "serde_bytes",
  "subtle-encoding",
@@ -5600,9 +5802,41 @@ dependencies = [
  "serde_json",
  "subtle",
  "subtle-encoding",
- "tendermint",
- "tendermint-config",
- "tendermint-proto",
+ "tendermint 0.40.0",
+ "tendermint-config 0.40.0",
+ "tendermint-proto 0.40.0",
+ "thiserror 1.0.69",
+ "time",
+ "tokio",
+ "tracing",
+ "url",
+ "uuid",
+ "walkdir",
+]
+
+[[package]]
+name = "tendermint-rpc"
+version = "0.40.4"
+source = "git+https://github.com/permissionlessweb/tendermint-rs#ead63760138b7f8f130aabcabd824c621f07abd3"
+dependencies = [
+ "async-trait",
+ "bytes",
+ "flex-error",
+ "futures",
+ "getrandom",
+ "peg",
+ "pin-project",
+ "rand",
+ "reqwest 0.11.27",
+ "semver",
+ "serde",
+ "serde_bytes",
+ "serde_json",
+ "subtle",
+ "subtle-encoding",
+ "tendermint 0.40.4",
+ "tendermint-config 0.40.4",
+ "tendermint-proto 0.40.4",
  "thiserror 1.0.69",
  "time",
  "tokio",
@@ -5777,7 +6011,7 @@ dependencies = [
  "parking_lot",
  "pin-project-lite",
  "signal-hook-registry",
- "socket2",
+ "socket2 0.5.8",
  "tokio-macros",
  "windows-sys 0.52.0",
 ]
@@ -5928,7 +6162,7 @@ dependencies = [
  "prost 0.13.4",
  "rustls-native-certs 0.8.1",
  "rustls-pemfile 2.2.0",
- "socket2",
+ "socket2 0.5.8",
  "tokio",
  "tokio-rustls 0.26.1",
  "tokio-stream",
@@ -5945,7 +6179,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7e581ba15a835f4d9ea06c55ab1bd4dce26fc53752c69a04aac00703bfb49ba9"
 dependencies = [
  "async-trait",
- "axum 0.8.4",
  "base64 0.22.1",
  "bytes",
  "h2 0.4.7",
@@ -5958,8 +6191,37 @@ dependencies = [
  "percent-encoding",
  "pin-project",
  "prost 0.13.4",
+ "socket2 0.5.8",
+ "tokio",
+ "tokio-stream",
+ "tower 0.5.2",
+ "tower-layer",
+ "tower-service",
+ "tracing",
+]
+
+[[package]]
+name = "tonic"
+version = "0.14.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "67ac5a8627ada0968acec063a4746bf79588aa03ccb66db2f75d7dce26722a40"
+dependencies = [
+ "async-trait",
+ "axum 0.8.4",
+ "base64 0.22.1",
+ "bytes",
+ "h2 0.4.7",
+ "http 1.2.0",
+ "http-body 1.0.1",
+ "http-body-util",
+ "hyper 1.5.2",
+ "hyper-timeout",
+ "hyper-util",
+ "percent-encoding",
+ "pin-project",
  "rustls-native-certs 0.8.1",
- "socket2",
+ "socket2 0.6.0",
+ "sync_wrapper 1.0.2",
  "tokio",
  "tokio-rustls 0.26.1",
  "tokio-stream",
@@ -5967,6 +6229,17 @@ dependencies = [
  "tower-layer",
  "tower-service",
  "tracing",
+]
+
+[[package]]
+name = "tonic-prost"
+version = "0.14.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9c511b9a96d40cb12b7d5d00464446acf3b9105fd3ce25437cfe41c92b1c87d"
+dependencies = [
+ "bytes",
+ "prost 0.14.1",
+ "tonic 0.14.1",
 ]
 
 [[package]]

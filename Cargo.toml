@@ -46,8 +46,7 @@ thiserror = "1.0.31"
 sha2 = "0.10.6"
 
 # dev-dependencies
-
-cw-orch = { version = "0.30.0", path = "../cw-orchestrator/cw-orch" }
+cw-orch = { version = "0.30.0", git = "https://github.com/permissionlessweb/cw-orchestrator" }
 cw-orch-interchain = { version = "0.8.1", path = "../cw-orchestrator/cw-orch-interchain" }
 
 cw-multi-test = "3.0.0"
