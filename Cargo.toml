@@ -25,17 +25,17 @@ panic = 'abort'
 rpath = false
 
 [workspace.dependencies]
-polytone = { package = "abstract-polytone", path = "packages/polytone", version = "2.0.0" }
-polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy", version = "5.0.0" }
-polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note", version = "5.0.0" }
-polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice", version = "5.0.0" }
-cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone", version = "6.0.0" }
+polytone = { package = "abstract-polytone", path = "packages/polytone" }
+polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy" }
+polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note" }
+polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice" }
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone" }
 
 cosmwasm-schema = "3.0.0"
 cosmwasm-std = { version = "3.0.0", features = ["stargate"] }
 cw-storage-plus = "3.0.0"
-cw-utils = "3.0.0"
-cw2 = "3.0.0"
+cw-utils = { path = "../cw-minus/packages/cw-utils" }
+cw2 = { path = "../cw-minus/packages/cw2" }
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 thiserror = "1.0.31"
@@ -46,8 +46,8 @@ thiserror = "1.0.31"
 sha2 = "0.10.6"
 
 # dev-dependencies
-cw-orch = { version = "0.30.0", git = "https://github.com/permissionlessweb/cw-orchestrator" }
-cw-orch-interchain = { version = "0.8.1", git = "https://github.com/permissionlessweb/cw-orchestrator" }
+cw-orch = { path = "../cw-orchestrator/cw-orch" }
+cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
 
 cw-multi-test = "3.0.0"
 anyhow = { version = "1.0.51" }
