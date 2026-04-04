@@ -26,17 +26,17 @@ rpath = false
 
 [workspace.dependencies]
 polytone-evm = { path = "packages/polytone-evm", version = "2.0.0" }
-polytone = { package = "abstract-polytone", path = "packages/polytone", version = "2.0.0" }
-polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy", version = "5.0.0" }
-polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note", version = "5.0.0" }
-polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice", version = "5.0.0" }
-cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone", version = "6.0.0" }
+polytone = { package = "abstract-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-proxy = { package = "abstract-polytone-proxy", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-note = { package = "abstract-polytone-note", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-voice = { package = "abstract-polytone-voice", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
 
-cosmwasm-schema = "3.0.4"
-cosmwasm-std = { version = "3.0.4", features = ["stargate"] }
-cw-storage-plus = "3.0.1"
-cw-utils = "3.0.0"
-cw2 = "3.0.0"
+cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "mvp" }
+cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "mvp" }
+cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "mvp" }
+cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "main" }
+cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "main" }
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 thiserror = "1.0.31"
@@ -48,8 +48,8 @@ sha2 = "0.10.6"
 
 # dev-dependencies
 
-cw-orch = { version = "0.30.0", git = "https://github.com/permissionlessweb/cw-orchestrator" }
+cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "main" }
 cw-orch-interchain = { version = "0.8.1", git = "https://github.com/permissionlessweb/cw-orchestrator" }
 
-cw-multi-test = "3.0.0"
+cw-multi-test = { git = "https://github.com/permissionlessweb/cw-multi-test", branch = "mvp" }
 anyhow = { version = "1.0.51" }
