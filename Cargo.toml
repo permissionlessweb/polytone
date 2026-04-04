@@ -48,8 +48,8 @@ sha2 = "0.10.6"
 
 # dev-dependencies
 
-cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "main" }
-cw-orch-interchain = { version = "0.8.1", git = "https://github.com/permissionlessweb/cw-orchestrator" }
+cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "cw3" }
+cw-orch-interchain = { version = "0.8.1", git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "cw3" }
 
 cw-multi-test = { git = "https://github.com/permissionlessweb/cw-multi-test", branch = "mvp" }
 anyhow = { version = "1.0.51" }
