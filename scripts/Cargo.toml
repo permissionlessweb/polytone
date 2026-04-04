@@ -22,4 +22,4 @@ cw-orch = { workspace = true, features = ["daemon"] }
 cw-orch-interchain = { workspace = true, features = ["daemon"] }
 
 [dev.dependencies]
-ibc-relayer-types = "0.25.0"
+ibc-relayer-types = { git = "https://github.com/permissionlessweb/hermes", branch = "master" }
