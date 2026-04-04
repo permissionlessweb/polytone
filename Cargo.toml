@@ -25,17 +25,17 @@ panic = 'abort'
 rpath = false
 
 [workspace.dependencies]
-polytone = { package = "abstract-polytone", path = "packages/polytone" }
-polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy" }
-polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note" }
-polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice" }
-cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone" }
+polytone = { package = "abstract-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-proxy = { package = "abstract-polytone-proxy", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-note = { package = "abstract-polytone-note", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-voice = { package = "abstract-polytone-voice", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
 
-cosmwasm-schema = "3.0.4"
-cosmwasm-std = { version = "3.0.4", features = ["stargate"] }
-cw-storage-plus = "3.0.1"
-cw-utils = { path = "../cw-minus/packages/cw-utils" }
-cw2 = { path = "../cw-minus/packages/cw2" }
+cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "mvp" }
+cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "mvp" }
+cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "mvp" }
+cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "main" }
+cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "main" }
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 thiserror = "1.0.31"
@@ -46,8 +46,8 @@ thiserror = "1.0.31"
 sha2 = "0.10.6"
 
 # dev-dependencies
-cw-orch = { path = "../cw-orchestrator/cw-orch" }
+cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "main" }
 cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
 
-cw-multi-test = "3.0.0"
+cw-multi-test = { git = "https://github.com/permissionlessweb/cw-multi-test", branch = "mvp" }
 anyhow = { version = "1.0.51" }
