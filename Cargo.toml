@@ -31,9 +31,9 @@ polytone-note = { package = "abstract-polytone-note", path = "contracts/main/not
 polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice" }
 cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone" }
 
-cosmwasm-schema = "3.0.0"
-cosmwasm-std = { version = "3.0.0", features = ["stargate"] }
-cw-storage-plus = "3.0.0"
+cosmwasm-schema = "3.0.4"
+cosmwasm-std = { version = "3.0.4", features = ["stargate"] }
+cw-storage-plus = "3.0.1"
 cw-utils = { path = "../cw-minus/packages/cw-utils" }
 cw2 = { path = "../cw-minus/packages/cw2" }
 
