@@ -1,4 +1,5 @@
 [workspace]
+resolver = "2"
 members = [
   "packages/*",
   "contracts/accessories/*",
@@ -53,3 +54,6 @@ cw-orch-interchain = { version = "0.8.1", git = "https://github.com/permissionle
 
 cw-multi-test = { git = "https://github.com/permissionlessweb/cw-multi-test", branch = "mvp" }
 anyhow = { version = "1.0.51" }
+
+[patch.crates-io]
+nam-blst = { git = "https://github.com/permissionlessweb/blst", branch = "master" }
