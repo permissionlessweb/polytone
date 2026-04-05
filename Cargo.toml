@@ -1,12 +1,17 @@
 [workspace]
-members = ["packages/*", "contracts/accessories/*", "contracts/main/*"]
+members = [
+  "packages/*",
+  "contracts/accessories/*",
+  "contracts/main/*",
+  "scripts",
+]
 
 [workspace.package]
 edition = "2021"
 license = "BSD-3-Clause"
 repository = "https://github.com/DA0-DA0/polytone"
 rust-version = "1.67"
-version = "1.0.2"
+version = "3.0.0-rc"
 
 [profile.release]
 codegen-units = 1
@@ -20,16 +25,17 @@ panic = 'abort'
 rpath = false
 
 [workspace.dependencies]
-polytone = { path = "packages/polytone", version = "1.0.0" }
-polytone-proxy = { path = "contracts/main/proxy", version = "1.0.0" }
-polytone-note = { path = "contracts/main/note", version = "1.0.0" }
-polytone-voice = { path = "contracts/main/voice", version = "1.0.0" }
+polytone = { package = "abstract-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-proxy = { package = "abstract-polytone-proxy", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-note = { package = "abstract-polytone-note", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-voice = { package = "abstract-polytone-voice", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
 
-cosmwasm-schema = "1.2.1"
-cosmwasm-std = { version = "1.5.0", features = ["ibc3"] }
-cw-storage-plus = "1.0.1"
-cw-utils = "1.0.1"
-cw2 = "1.0.1"
+cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "mvp" }
+cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "mvp" }
+cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "mvp" }
+cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "main" }
+cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "main" }
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 thiserror = "1.0.31"
@@ -40,7 +46,8 @@ thiserror = "1.0.31"
 sha2 = "0.10.6"
 
 # dev-dependencies
-cw-multi-test = "0.16.2"
-polytone-tester = { path = "tests/polytone-tester" }
+cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "cw3" }
+cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "cw3" }
+
+cw-multi-test = { git = "https://github.com/permissionlessweb/cw-multi-test", branch = "mvp" }
 anyhow = { version = "1.0.51" }
-cw-orch = { version = "0.20.0" }

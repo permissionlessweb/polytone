@@ -55,7 +55,7 @@ impl MockHandshake {
         .version;
 
         channel.version = v;
-        channel.connection_id = connection_end.clone();
+        channel.connection_id.clone_from(&connection_end);
 
         let v = (self.try_)(
             &IbcChannelOpenMsg::OpenTry {

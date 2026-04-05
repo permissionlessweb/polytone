@@ -5,14 +5,13 @@ use cosmwasm_std::CosmosMsg;
 pub struct InstantiateMsg {}
 
 #[cw_serde]
-#[cfg_attr(feature = "interface", derive(cw_orch::ExecuteFns))] // cw-orch automatic
+#[derive(cw_orch::ExecuteFns)] // cw-orch automatic
 pub enum ExecuteMsg {
     Proxy { msgs: Vec<CosmosMsg> },
 }
 
 #[cw_serde]
-#[derive(QueryResponses)]
-#[cfg_attr(feature = "interface", derive(cw_orch::QueryFns))] // cw-orch automatic
+#[derive(QueryResponses, cw_orch::QueryFns)] // cw-orch automatic
 pub enum QueryMsg {
     #[returns(cosmwasm_std::Addr)]
     Instantiator {},

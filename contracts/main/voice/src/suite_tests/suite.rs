@@ -1,4 +1,4 @@
-use cosmwasm_std::{Addr, Empty, Uint64};
+use cosmwasm_std::{Addr, Empty, StdResult, Uint64};
 use cw_multi_test::{App, AppResponse, Contract, ContractWrapper, Executor};
 
 use crate::msg::QueryMsg::{BlockMaxGas, ProxyCodeId};
@@ -104,7 +104,7 @@ impl Suite {
         sender: Addr,
         contract_code_id: u64,
         block_max_gas: u64,
-    ) -> anyhow::Result<AppResponse> {
+    ) -> StdResult<AppResponse> {
         self.app.migrate_contract(
             sender,
             self.voice_address.clone(),
