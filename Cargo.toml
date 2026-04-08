@@ -1,10 +1,14 @@
 [workspace]
 resolver = "2"
 members = [
-  "packages/*",
+  "packages/polytone-evm",
   "contracts/accessories/*",
   "contracts/main/*",
   "scripts",
+]
+exclude = [
+  "packages/polytone",
+  "packages/cw-orch-polytone",
 ]
 
 [workspace.package]
@@ -26,34 +30,43 @@ panic = 'abort'
 rpath = false
 
 [workspace.dependencies]
-polytone-evm = { path = "packages/polytone-evm", version = "2.0.0" }
-polytone = { package = "abstract-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
-polytone-proxy = { package = "abstract-polytone-proxy", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
-polytone-note = { package = "abstract-polytone-note", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
-polytone-voice = { package = "abstract-polytone-voice", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
-cw-orch-polytone = { package = "abstract-cw-orch-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "bump/cw3" }
+polytone-evm = { path = "packages/polytone-evm" }
+polytone = { package = "abstract-polytone", path = "../polytone/packages/polytone" }
+polytone-proxy = { package = "abstract-polytone-proxy", path = "../polytone/contracts/main/proxy" }
+polytone-note = { package = "abstract-polytone-note", path = "../polytone/contracts/main/note" }
+polytone-voice = { package = "abstract-polytone-voice", path = "../polytone/contracts/main/voice" }
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "../polytone/packages/cw-orch-polytone" }
 
-cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "mvp" }
-cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "mvp" }
-cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "mvp" }
-cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "main" }
-cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "main" }
+cosmwasm-schema = { path = "../ZK/cw/zk-cosmwasm/packages/schema" }
+cosmwasm-std = { path = "../ZK/cw/zk-cosmwasm/packages/std" }
+cw-storage-plus = { path = "../ZK/cw/zk-storage-plus" }
+cw-utils = { path = "../ZK/cw/zk-cw-minus/packages/cw-utils" }
+cw2 = { path = "../ZK/cw/zk-cw-minus/packages/cw2" }
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 thiserror = "1.0.31"
-# the sha2 version here is the same as the one used by
-# cosmwasm-std. when bumping cosmwasm-std, this should also be
-# updated. to find cosmwasm_std's sha function:
-# ```cargo tree --package cosmwasm-std```
 sha2 = "0.10.6"
 
 # dev-dependencies
 
-cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "cw3" }
-cw-orch-interchain = { version = "0.8.1", git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "cw3" }
-
-cw-multi-test = { git = "https://github.com/permissionlessweb/cw-multi-test", branch = "mvp" }
+cw-orch = { path = "../cw-orchestrator/cw-orch" }
+cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
+cw-multi-test = { path = "../cw-multi-test-fork" }
 anyhow = { version = "1.0.51" }
 
 [patch.crates-io]
-nam-blst = { git = "https://github.com/permissionlessweb/blst", branch = "master" }
+
+# Fork patches (managed by dep-switch.py)
+
+# Fork patches (managed by dep-switch.py)
+
+# Fork patches (managed by dep-switch.py)
+
+# Fork patches (managed by dep-switch.py)
+
+# Fork patches (managed by dep-switch.py)
+
+# Fork patches (managed by dep-switch.py)
+
+# Fork patches (managed by dep-switch.py)
+nam-blst = { path = "../nam-blst/bindings/rust" }
