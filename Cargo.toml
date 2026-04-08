@@ -55,18 +55,4 @@ cw-multi-test = { path = "../cw-multi-test-fork" }
 anyhow = { version = "1.0.51" }
 
 [patch.crates-io]
-
-# Fork patches (managed by dep-switch.py)
-
-# Fork patches (managed by dep-switch.py)
-
-# Fork patches (managed by dep-switch.py)
-
-# Fork patches (managed by dep-switch.py)
-
-# Fork patches (managed by dep-switch.py)
-
-# Fork patches (managed by dep-switch.py)
-
-# Fork patches (managed by dep-switch.py)
 nam-blst = { path = "../nam-blst/bindings/rust" }
