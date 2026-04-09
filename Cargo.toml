@@ -9,6 +9,9 @@ members = [
 exclude = [
   "packages/polytone",
   "packages/cw-orch-polytone",
+  "contracts/main/note",
+  "contracts/main/voice",
+  "contracts/main/proxy",
 ]
 
 [workspace.package]
@@ -51,9 +54,11 @@ sha2 = "0.10.6"
 
 cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
 cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
-cw-multi-test = { path = "../cw-multi-test-fork" }
+cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", branch = "zk-mvp" }
 anyhow = { version = "1.0.51" }
 
 [patch.crates-io]
+
+
 
 nam-blst = { git = "https://github.com/permissionlessweb/blst", branch = "zk-mvp" }

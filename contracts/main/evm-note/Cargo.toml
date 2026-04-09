@@ -43,5 +43,5 @@ cw-asset = { git = "https://github.com/permissionlessweb/cw-asset", branch = "zk
 
 [dev-dependencies]
 anyhow = "1.0.86"
-evm-note = { git = "https://github.com/permissionlessweb/polytone", branch = "evm/zk-mvp" }
-cw-multi-test = { path = "../../../../cw-multi-test-fork" }
+evm-note = { path = "." }
+cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", branch = "zk-mvp" }
