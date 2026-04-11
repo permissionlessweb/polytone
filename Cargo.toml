@@ -1,9 +1,9 @@
 [workspace]
 members = [
-  "packages/*",
-  "contracts/accessories/*",
-  "contracts/main/*",
-  "scripts",
+    "contracts/accessories/*",
+    "contracts/main/*",
+    "packages/*",
+    "scripts",
 ]
 
 [workspace.package]
@@ -12,6 +12,34 @@ license = "BSD-3-Clause"
 repository = "https://github.com/DA0-DA0/polytone"
 rust-version = "1.67"
 version = "3.0.0-rc"
+
+[workspace.dependencies]
+cw-orch-polytone = { path = "packages/cw-orch-polytone" }
+polytone = { path = "packages/polytone" }
+polytone-note = { path = "contracts/main/note" }
+polytone-proxy = { path = "contracts/main/proxy" }
+polytone-voice = { path = "contracts/main/voice" }
+
+cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
+cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
+cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "zk-mvp" }
+cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
+cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
+
+serde = { version = "1.0.145", default-features = false, features = ["derive"] }
+# the sha2 version here is the same as the one used by
+# cosmwasm-std. when bumping cosmwasm-std, this should also be
+# updated. to find cosmwasm_std's sha function:
+# ```cargo tree --package cosmwasm-std```
+sha2 = "0.10.6"
+thiserror = "1.0.31"
+
+# dev-dependencies
+cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
+cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
+
+anyhow = { version = "1.0.51" }
+cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", branch = "zk-mvp" }
 
 [profile.release]
 codegen-units = 1
@@ -23,31 +51,3 @@ opt-level = 3
 overflow-checks = true   # very important, do not turn these off.
 panic = 'abort'
 rpath = false
-
-[workspace.dependencies]
-polytone = { package = "abstract-polytone", path = "packages/polytone" }
-polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy" }
-polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note" }
-polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice" }
-cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone" }
-
-cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
-cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
-cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "zk-mvp" }
-cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
-cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
-
-serde = { version = "1.0.145", default-features = false, features = ["derive"] }
-thiserror = "1.0.31"
-# the sha2 version here is the same as the one used by
-# cosmwasm-std. when bumping cosmwasm-std, this should also be
-# updated. to find cosmwasm_std's sha function:
-# ```cargo tree --package cosmwasm-std```
-sha2 = "0.10.6"
-
-# dev-dependencies
-cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
-cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
-
-cw-multi-test = { package = "abstract-cw-multi-test", path = "../cw-multi-test-fork" }
-anyhow = { version = "1.0.51" }
