@@ -1,17 +1,17 @@
 [workspace]
 resolver = "2"
 members = [
-  "packages/polytone-evm",
-  "contracts/accessories/*",
-  "contracts/main/*",
-  "scripts",
+    "contracts/accessories/*",
+    "contracts/main/*",
+    "packages/polytone-evm",
+    "scripts",
 ]
 exclude = [
-  "packages/polytone",
-  "packages/cw-orch-polytone",
-  "contracts/main/note",
-  "contracts/main/voice",
-  "contracts/main/proxy",
+    "contracts/main/note",
+    "contracts/main/proxy",
+    "contracts/main/voice",
+    "packages/cw-orch-polytone",
+    "packages/polytone",
 ]
 
 [workspace.package]
@@ -20,6 +20,30 @@ license = "BSD-3-Clause"
 repository = "https://github.com/DA0-DA0/polytone"
 rust-version = "1.67"
 version = "3.0.0-rc"
+
+[workspace.dependencies]
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
+polytone = { package = "abstract-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
+polytone-evm = { path = "packages/polytone-evm" }
+polytone-note = { package = "abstract-polytone-note", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
+polytone-proxy = { package = "abstract-polytone-proxy", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
+polytone-voice = { package = "abstract-polytone-voice", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
+
+cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
+cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
+cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "zk-mvp" }
+cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
+cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
+
+serde = { version = "1.0.145", default-features = false, features = ["derive"] }
+sha2 = "0.10.6"
+thiserror = "1.0.31"
+# dev-dependencies
+
+anyhow = { version = "1.0.51" }
+cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", branch = "zk-mvp" }
+cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
+cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
 
 [profile.release]
 codegen-units = 1
@@ -32,33 +56,6 @@ overflow-checks = true   # very important, do not turn these off.
 panic = 'abort'
 rpath = false
 
-[workspace.dependencies]
-polytone-evm = { path = "packages/polytone-evm" }
-polytone = { package = "abstract-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
-polytone-proxy = { package = "abstract-polytone-proxy", path = "../polytone/contracts/main/proxy" }
-polytone-note = { package = "abstract-polytone-note", path = "../polytone/contracts/main/note" }
-polytone-voice = { package = "abstract-polytone-voice", path = "../polytone/contracts/main/voice" }
-cw-orch-polytone = { package = "abstract-cw-orch-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
-
-cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
-cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
-cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "zk-mvp" }
-cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
-cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
-
-serde = { version = "1.0.145", default-features = false, features = ["derive"] }
-thiserror = "1.0.31"
-sha2 = "0.10.6"
-
-# dev-dependencies
-
-cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
-cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
-cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", branch = "zk-mvp" }
-anyhow = { version = "1.0.51" }
-
 [patch.crates-io]
-
-
 
 nam-blst = { git = "https://github.com/permissionlessweb/blst", branch = "zk-mvp" }

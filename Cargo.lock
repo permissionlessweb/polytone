@@ -40,7 +40,7 @@ name = "abstract-cw-orch-polytone"
 version = "6.0.1"
 source = "git+https://github.com/permissionlessweb/polytone?branch=zk-mvp#cffd383c2f83e30df7b1935b654a36d7733a3e99"
 dependencies = [
- "abstract-polytone-note 5.0.0 (git+https://github.com/permissionlessweb/polytone?branch=zk-mvp)",
+ "abstract-polytone-note",
  "abstract-polytone-proxy",
  "abstract-polytone-voice",
  "clap",
@@ -55,16 +55,6 @@ dependencies = [
 [[package]]
 name = "abstract-polytone"
 version = "2.0.0"
-dependencies = [
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw-storage-plus",
- "thiserror 1.0.69",
-]
-
-[[package]]
-name = "abstract-polytone"
-version = "2.0.0"
 source = "git+https://github.com/permissionlessweb/polytone?branch=zk-mvp#cffd383c2f83e30df7b1935b654a36d7733a3e99"
 dependencies = [
  "cosmwasm-schema",
@@ -76,23 +66,9 @@ dependencies = [
 [[package]]
 name = "abstract-polytone-note"
 version = "5.0.0"
-dependencies = [
- "abstract-polytone 2.0.0",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw-orch",
- "cw-storage-plus",
- "cw-utils",
- "cw2",
- "thiserror 1.0.69",
-]
-
-[[package]]
-name = "abstract-polytone-note"
-version = "5.0.0"
 source = "git+https://github.com/permissionlessweb/polytone?branch=zk-mvp#cffd383c2f83e30df7b1935b654a36d7733a3e99"
 dependencies = [
- "abstract-polytone 2.0.0 (git+https://github.com/permissionlessweb/polytone?branch=zk-mvp)",
+ "abstract-polytone",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-orch",
@@ -107,7 +83,7 @@ name = "abstract-polytone-proxy"
 version = "5.0.0"
 source = "git+https://github.com/permissionlessweb/polytone?branch=zk-mvp#cffd383c2f83e30df7b1935b654a36d7733a3e99"
 dependencies = [
- "abstract-polytone 2.0.0 (git+https://github.com/permissionlessweb/polytone?branch=zk-mvp)",
+ "abstract-polytone",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-orch",
@@ -122,7 +98,7 @@ name = "abstract-polytone-voice"
 version = "5.0.0"
 source = "git+https://github.com/permissionlessweb/polytone?branch=zk-mvp#cffd383c2f83e30df7b1935b654a36d7733a3e99"
 dependencies = [
- "abstract-polytone 2.0.0 (git+https://github.com/permissionlessweb/polytone?branch=zk-mvp)",
+ "abstract-polytone",
  "abstract-polytone-proxy",
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -4761,8 +4737,26 @@ dependencies = [
  "cw-storage-plus",
  "cw-utils",
  "cw2",
- "evm-note",
- "polytone-evm",
+ "evm-note 0.3.1 (git+https://github.com/permissionlessweb/polytone?branch=evm/zk-mvp)",
+ "polytone-evm 2.0.0",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "evm-note"
+version = "0.3.1"
+source = "git+https://github.com/permissionlessweb/polytone?branch=evm/zk-mvp#b34fcdadb0104f40e2178daa636f68dbc8c75bb3"
+dependencies = [
+ "alloy",
+ "alloy-sol-types",
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-asset",
+ "cw-orch",
+ "cw-storage-plus",
+ "cw-utils",
+ "cw2",
+ "polytone-evm 2.0.0 (git+https://github.com/permissionlessweb/polytone?branch=evm/zk-mvp)",
  "thiserror 1.0.69",
 ]
 
@@ -10884,12 +10878,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "polytone-evm"
+version = "2.0.0"
+source = "git+https://github.com/permissionlessweb/polytone?branch=evm/zk-mvp#b34fcdadb0104f40e2178daa636f68dbc8c75bb3"
+dependencies = [
+ "alloy",
+ "alloy-sol-types",
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-asset",
+ "cw-storage-plus",
+ "cw-utils",
+ "cw2",
+ "foundry-compilers",
+ "foundry-config",
+ "thiserror 1.0.69",
+]
+
+[[package]]
 name = "polytone-listener"
 version = "3.0.0-rc"
 dependencies = [
  "abstract-cw-multi-test",
- "abstract-polytone 2.0.0 (git+https://github.com/permissionlessweb/polytone?branch=zk-mvp)",
- "abstract-polytone-note 5.0.0",
+ "abstract-polytone",
+ "abstract-polytone-note",
  "anyhow",
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -10902,7 +10914,7 @@ dependencies = [
 name = "polytone-tester"
 version = "3.0.0-rc"
 dependencies = [
- "abstract-polytone 2.0.0 (git+https://github.com/permissionlessweb/polytone?branch=zk-mvp)",
+ "abstract-polytone",
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-storage-plus",
@@ -12431,7 +12443,7 @@ name = "scripts"
 version = "3.0.0-rc"
 dependencies = [
  "abstract-cw-orch-polytone",
- "abstract-polytone-note 5.0.0",
+ "abstract-polytone-note",
  "anyhow",
  "cosmos-sdk-proto",
  "cosmwasm-std",
