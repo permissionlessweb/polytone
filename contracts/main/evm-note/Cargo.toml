@@ -23,15 +23,15 @@ cosmwasm-schema = { workspace = true }
 cosmwasm-std = { workspace = true, features = ["stargate"] }
 cw-storage-plus = { workspace = true }
 cw-utils = { workspace = true }
-cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
+cw2 = { path = "../../../../cw-minus/packages/cw2" }
 thiserror = "1.0.31"
 
-cw-asset = { git = "https://github.com/permissionlessweb/cw-asset", branch = "zk-mvp" }
+cw-asset = { path = "../../../../cw-asset" }
 
 [dev-dependencies]
 anyhow = "1.0.86"
-cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", branch = "zk-mvp" }
-evm-note = { git = "https://github.com/permissionlessweb/polytone", branch = "evm/zk-mvp" }
+cw-multi-test = { package = "abstract-cw-multi-test", path = "../../../../cw-multi-test-fork" }
+evm-note = { path = "." }
 
 # This is here inspite of the warnings to make sure it is not missed
 # if the contract is taken out of the workspace

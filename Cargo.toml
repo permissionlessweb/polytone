@@ -22,18 +22,18 @@ rust-version = "1.67"
 version = "3.0.0-rc"
 
 [workspace.dependencies]
-cw-orch-polytone = { package = "abstract-cw-orch-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
-polytone = { package = "abstract-polytone", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "../polytone/packages/cw-orch-polytone" }
+polytone = { package = "abstract-polytone", path = "../polytone/packages/polytone" }
 polytone-evm = { path = "packages/polytone-evm" }
-polytone-note = { package = "abstract-polytone-note", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
-polytone-proxy = { package = "abstract-polytone-proxy", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
-polytone-voice = { package = "abstract-polytone-voice", git = "https://github.com/permissionlessweb/polytone", branch = "zk-mvp" }
+polytone-note = { package = "abstract-polytone-note", path = "../polytone/contracts/main/note" }
+polytone-proxy = { package = "abstract-polytone-proxy", path = "../polytone/contracts/main/proxy" }
+polytone-voice = { package = "abstract-polytone-voice", path = "../polytone/contracts/main/voice" }
 
-cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
-cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
-cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "zk-mvp" }
-cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
-cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
+cosmwasm-schema = { path = "../cosmwasm/packages/schema" }
+cosmwasm-std = { path = "../cosmwasm/packages/std" }
+cw-storage-plus = { path = "../cw-storage-plus" }
+cw-utils = { path = "../cw-minus/packages/cw-utils" }
+cw2 = { path = "../cw-minus/packages/cw2" }
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 sha2 = "0.10.6"
@@ -41,9 +41,19 @@ thiserror = "1.0.31"
 # dev-dependencies
 
 anyhow = { version = "1.0.51" }
-cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", branch = "zk-mvp" }
-cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
-cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
+cw-multi-test = { package = "abstract-cw-multi-test", path = "../cw-multi-test-fork" }
+cw-orch = { path = "../cw-orchestrator/cw-orch" }
+cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
+
+[patch.crates-io]
+blst = { package = "nam-blst", path = "../blst/bindings/rust", version = "0.3.17-nam.0" }
+alloy = {path = "../alloy/crates/alloy"}
+
+[patch.'https://github.com/permissionlessweb/polytone']
+evm-note = { path = "contracts/main/evm-note" }
+polytone-evm = { path = "packages/polytone-evm" }
+
+
 
 [profile.release]
 codegen-units = 1
@@ -55,7 +65,3 @@ opt-level = 3
 overflow-checks = true   # very important, do not turn these off.
 panic = 'abort'
 rpath = false
-
-[patch.crates-io]
-
-nam-blst = { git = "https://github.com/permissionlessweb/blst", branch = "zk-mvp" }
