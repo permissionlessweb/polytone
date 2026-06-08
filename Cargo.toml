@@ -14,17 +14,17 @@ rust-version = "1.67"
 version = "3.0.0-rc"
 
 [workspace.dependencies]
-cw-orch-polytone = { path = "packages/cw-orch-polytone" }
-polytone = { path = "packages/polytone" }
-polytone-note = { path = "contracts/main/note" }
-polytone-proxy = { path = "contracts/main/proxy" }
-polytone-voice = { path = "contracts/main/voice" }
+cw-orch-polytone = { path = "packages/cw-orch-polytone", package = "abstract-cw-orch-polytone" }
+polytone = { path = "packages/polytone", package = "abstract-polytone" }
+polytone-note = { path = "contracts/main/note", package = "abstract-polytone-note" }
+polytone-proxy = { path = "contracts/main/proxy", package = "abstract-polytone-proxy" }
+polytone-voice = { path = "contracts/main/voice", package = "abstract-polytone-voice" }
 
-cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
-cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
-cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", branch = "zk-mvp" }
-cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
-cw2 = { git = "https://github.com/permissionlessweb/cw-minus", branch = "zk-mvp" }
+cosmwasm-schema = { path = "../cosmwasm/packages/schema" }
+cosmwasm-std = { path = "../cosmwasm/packages/std" }
+cw-storage-plus = { path = "../cw-storage-plus" }
+cw-utils = { path = "../cw-minus/packages/cw-utils" }
+cw2 = { path = "../cw-minus/packages/cw2" }
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 # the sha2 version here is the same as the one used by
@@ -35,11 +35,18 @@ sha2 = "0.10.6"
 thiserror = "1.0.31"
 
 # dev-dependencies
-cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
-cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", branch = "zk-mvp" }
+cw-orch = { path = "../cw-orchestrator/cw-orch" }
+cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
 
 anyhow = { version = "1.0.51" }
-cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", branch = "zk-mvp" }
+cw-multi-test = { package = "abstract-cw-multi-test", path = "../cw-multi-test-fork" }
+
+[patch.'https://github.com/permissionlessweb/polytone']
+abstract-cw-orch-polytone = { path = "packages/cw-orch-polytone" }
+abstract-polytone = { path = "packages/polytone" }
+abstract-polytone-note = { path = "contracts/main/note" }
+abstract-polytone-proxy = { path = "contracts/main/proxy" }
+abstract-polytone-voice = { path = "contracts/main/voice" }
 
 [profile.release]
 codegen-units = 1

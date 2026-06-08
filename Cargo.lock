@@ -35,29 +35,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "abstract-cw-multi-test"
-version = "3.0.0-rc"
-source = "git+https://github.com/permissionlessweb/cw-multi-test-fork?branch=zk-mvp#2339e4cfbe5c7b5896b25bb10bc4decd3db98249"
-dependencies = [
- "bech32 0.11.1",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cw-storage-plus",
- "cw-utils",
- "cw20-ics20",
- "hex",
- "itertools 0.14.0",
- "log",
- "prost",
- "schemars 0.8.22",
- "serde",
- "serde_json",
- "sha2 0.10.9",
- "thiserror 1.0.69",
- "tiny-keccak",
-]
-
-[[package]]
 name = "abstract-cw-orch-polytone"
 version = "6.0.1"
 dependencies = [
@@ -88,7 +65,7 @@ dependencies = [
 name = "abstract-polytone-note"
 version = "5.0.0"
 dependencies = [
- "abstract-cw-multi-test 3.0.0-rc",
+ "abstract-cw-multi-test",
  "abstract-polytone",
  "anyhow",
  "cosmwasm-schema",
@@ -104,7 +81,7 @@ dependencies = [
 name = "abstract-polytone-proxy"
 version = "5.0.0"
 dependencies = [
- "abstract-cw-multi-test 3.0.0-rc",
+ "abstract-cw-multi-test",
  "abstract-polytone",
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -119,7 +96,7 @@ dependencies = [
 name = "abstract-polytone-voice"
 version = "5.0.0"
 dependencies = [
- "abstract-cw-multi-test 3.0.0-rc",
+ "abstract-cw-multi-test",
  "abstract-polytone",
  "abstract-polytone-proxy",
  "anyhow",
@@ -131,6 +108,15 @@ dependencies = [
  "cw2",
  "sha2 0.10.9",
  "thiserror 1.0.69",
+]
+
+[[package]]
+name = "addr2line"
+version = "0.25.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b5d307320b3181d6d7954e663bd7c774a838b8220fe0593c86d9fb09f498b4b"
+dependencies = [
+ "gimli 0.32.3",
 ]
 
 [[package]]
@@ -874,6 +860,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "backtrace"
+version = "0.3.76"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bb531853791a215d7c62a30daf0dde835f381ab5de4589cfe7c649d2cbe92bd6"
+dependencies = [
+ "addr2line",
+ "cfg-if",
+ "libc",
+ "miniz_oxide",
+ "object 0.37.3",
+ "rustc-demangle",
+ "windows-link",
+]
+
+[[package]]
 name = "base16"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -997,6 +998,26 @@ dependencies = [
 
 [[package]]
 name = "bindgen"
+version = "0.70.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f49d8fed880d473ea71efb9bf597651e77201bdd4893efe54c9e5d65ae04ce6f"
+dependencies = [
+ "bitflags 2.11.0",
+ "cexpr",
+ "clang-sys",
+ "itertools 0.13.0",
+ "log",
+ "prettyplease",
+ "proc-macro2 1.0.106",
+ "quote",
+ "regex",
+ "rustc-hash 1.1.0",
+ "shlex",
+ "syn 2.0.117",
+]
+
+[[package]]
+name = "bindgen"
 version = "0.72.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "993776b509cfb49c750f11b8f07a46fa23e0a1386ffc01fb1e7d343efc387895"
@@ -1065,7 +1086,16 @@ version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0700ddab506f33b20a03b13996eccd309a48e5ff77d0d95926aa0210fb4e95f1"
 dependencies = [
- "bit-vec",
+ "bit-vec 0.6.3",
+]
+
+[[package]]
+name = "bit-set"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "08807e080ed7f9d5433fa9b275196cfc35414f66a0c79d864dc51a0d825231a3"
+dependencies = [
+ "bit-vec 0.8.0",
 ]
 
 [[package]]
@@ -1073,6 +1103,12 @@ name = "bit-vec"
 version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "349f9b6a179ed607305526ca489b34ad0a41aed5f7980fa90eb03160b69598fb"
+
+[[package]]
+name = "bit-vec"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5e764a1d40d510daf35e07be9eb06e75770908c27d411ee6c92109c9840eaaf7"
 
 [[package]]
 name = "bitcoin"
@@ -1355,8 +1391,20 @@ version = "0.6.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "23cdc57ce23ac53c931e88a43d06d070a6fd142f2617be5855eb75efc9beb1c2"
 dependencies = [
- "bytecheck_derive",
- "ptr_meta",
+ "bytecheck_derive 0.6.12",
+ "ptr_meta 0.1.4",
+ "simdutf8",
+]
+
+[[package]]
+name = "bytecheck"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0caa33a2c0edca0419d15ac723dff03f1956f7978329b1e3b5fdaaaed9d3ca8b"
+dependencies = [
+ "bytecheck_derive 0.8.2",
+ "ptr_meta 0.3.1",
+ "rancor",
  "simdutf8",
 ]
 
@@ -1369,6 +1417,17 @@ dependencies = [
  "proc-macro2 1.0.106",
  "quote",
  "syn 1.0.109",
+]
+
+[[package]]
+name = "bytecheck_derive"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "89385e82b5d1821d2219e0b095efa2cc1f246cbf99080f3be46a1a85c0d392d9"
+dependencies = [
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 2.0.117",
 ]
 
 [[package]]
@@ -1655,9 +1714,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "cmake"
+version = "0.1.58"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0f78a02292a74a88ac736019ab962ece0bc380e3f977bf72e376c5d78ff0678"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "cnidarium"
 version = "0.84.0"
-source = "git+https://github.com/permissionlessweb/cnidarium?branch=zk-mvp#3dc7bd2899557f44f6b0d63f58e09fd89f5b87a9"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1692,7 +1759,6 @@ dependencies = [
 [[package]]
 name = "cnidarium-component"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1934,9 +2000,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "corosensei"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5d1ea1c2a2f898d2a6ff149587b8a04f41ee708d248c723f01ac2f0f01edc0b3"
+dependencies = [
+ "autocfg",
+ "cfg-if",
+ "libc",
+ "scopeguard",
+ "windows-sys 0.59.0",
+]
+
+[[package]]
 name = "cosmos-sdk-proto"
 version = "0.28.0"
-source = "git+https://github.com/permissionlessweb/cosmos-rust?branch=zk-mvp#f06b0cd8b4d6f71985203050124d3de89e427aca"
 dependencies = [
  "bytes",
  "http-body-util",
@@ -1951,7 +2029,6 @@ dependencies = [
 [[package]]
 name = "cosmrs"
 version = "0.23.0"
-source = "git+https://github.com/permissionlessweb/cosmos-rust?branch=zk-mvp#f06b0cd8b4d6f71985203050124d3de89e427aca"
 dependencies = [
  "bip32",
  "cosmos-sdk-proto",
@@ -1972,12 +2049,10 @@ dependencies = [
 [[package]]
 name = "cosmwasm-core"
 version = "3.0.3-dev"
-source = "git+https://github.com/permissionlessweb/cosmwasm?branch=zk-mvp#05dfc94748bb8b79866ee0a7fcea02df46d9be0a"
 
 [[package]]
 name = "cosmwasm-crypto"
 version = "3.0.3-dev"
-source = "git+https://github.com/permissionlessweb/cosmwasm?branch=zk-mvp#05dfc94748bb8b79866ee0a7fcea02df46d9be0a"
 dependencies = [
  "ark-bls12-381",
  "ark-ec 0.5.0",
@@ -2001,7 +2076,6 @@ dependencies = [
 [[package]]
 name = "cosmwasm-derive"
 version = "3.0.3-dev"
-source = "git+https://github.com/permissionlessweb/cosmwasm?branch=zk-mvp#05dfc94748bb8b79866ee0a7fcea02df46d9be0a"
 dependencies = [
  "proc-macro2 1.0.106",
  "quote",
@@ -2011,7 +2085,6 @@ dependencies = [
 [[package]]
 name = "cosmwasm-schema"
 version = "3.0.3-dev"
-source = "git+https://github.com/permissionlessweb/cosmwasm?branch=zk-mvp#05dfc94748bb8b79866ee0a7fcea02df46d9be0a"
 dependencies = [
  "cosmwasm-schema-derive",
  "cw-schema",
@@ -2024,7 +2097,6 @@ dependencies = [
 [[package]]
 name = "cosmwasm-schema-derive"
 version = "3.0.3-dev"
-source = "git+https://github.com/permissionlessweb/cosmwasm?branch=zk-mvp#05dfc94748bb8b79866ee0a7fcea02df46d9be0a"
 dependencies = [
  "proc-macro2 1.0.106",
  "quote",
@@ -2034,7 +2106,6 @@ dependencies = [
 [[package]]
 name = "cosmwasm-std"
 version = "3.0.3-dev"
-source = "git+https://github.com/permissionlessweb/cosmwasm?branch=zk-mvp#05dfc94748bb8b79866ee0a7fcea02df46d9be0a"
 dependencies = [
  "base64 0.22.1",
  "bech32 0.11.1",
@@ -2053,6 +2124,16 @@ dependencies = [
  "sha2 0.10.9",
  "static_assertions",
  "thiserror 1.0.69",
+]
+
+[[package]]
+name = "cosmwasm-vm-derive"
+version = "3.0.3-dev"
+dependencies = [
+ "blake2",
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 2.0.117",
 ]
 
 [[package]]
@@ -2112,6 +2193,15 @@ name = "crossbeam-epoch"
 version = "0.9.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5b82ac4a3c2ca9c3460964f020e1402edd5753411d7737aa39c3714ad1b5420e"
+dependencies = [
+ "crossbeam-utils",
+]
+
+[[package]]
+name = "crossbeam-queue"
+version = "0.3.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0f58bbc28f91df819d0aa2a2c00cd19754769c2fad90579b3592b1c9ba7a3115"
 dependencies = [
  "crossbeam-utils",
 ]
@@ -2226,7 +2316,6 @@ dependencies = [
 [[package]]
 name = "cw-controllers"
 version = "3.0.0"
-source = "git+https://github.com/permissionlessweb/cw-minus?branch=zk-mvp#5a4cff1fe65e1de8c2f98e222b94ec04c4517831"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -2240,11 +2329,11 @@ dependencies = [
 [[package]]
 name = "cw-orch"
 version = "0.30.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "anyhow",
  "cosmrs",
  "cosmwasm-std",
+ "cw-orch-circuit-derive",
  "cw-orch-contract-derive",
  "cw-orch-core",
  "cw-orch-daemon",
@@ -2262,9 +2351,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "cw-orch-circuit-derive"
+version = "0.21.1"
+dependencies = [
+ "convert_case",
+ "quote",
+ "syn 2.0.117",
+]
+
+[[package]]
 name = "cw-orch-contract-derive"
 version = "0.21.1"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "convert_case",
  "quote",
@@ -2274,9 +2371,8 @@ dependencies = [
 [[package]]
 name = "cw-orch-core"
 version = "2.1.4"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
- "abstract-cw-multi-test 3.0.0-rc (git+https://github.com/permissionlessweb/cw-multi-test-fork?branch=zk-mvp)",
+ "abstract-cw-multi-test",
  "anyhow",
  "cosmos-sdk-proto",
  "cosmwasm-std",
@@ -2288,12 +2384,12 @@ dependencies = [
  "serde_json",
  "sha2 0.10.9",
  "thiserror 1.0.69",
+ "zk-cosmwasm",
 ]
 
 [[package]]
 name = "cw-orch-daemon"
 version = "0.29.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "anyhow",
  "async-recursion",
@@ -2340,7 +2436,6 @@ dependencies = [
 [[package]]
 name = "cw-orch-fns-derive"
 version = "0.23.1"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "convert_case",
  "proc-macro2 1.0.106",
@@ -2351,7 +2446,6 @@ dependencies = [
 [[package]]
 name = "cw-orch-interchain"
 version = "0.8.1"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "cosmwasm-std",
  "cw-orch-interchain-core",
@@ -2367,7 +2461,6 @@ dependencies = [
 [[package]]
 name = "cw-orch-interchain-core"
 version = "0.9.2"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "base64 0.22.1",
  "cosmwasm-schema",
@@ -2389,7 +2482,6 @@ dependencies = [
 [[package]]
 name = "cw-orch-interchain-daemon"
 version = "0.9.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "async-recursion",
  "base64 0.22.1",
@@ -2418,7 +2510,6 @@ dependencies = [
 [[package]]
 name = "cw-orch-interchain-mock"
 version = "0.9.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "anyhow",
  "cosmrs",
@@ -2437,9 +2528,8 @@ dependencies = [
 [[package]]
 name = "cw-orch-mock"
 version = "0.24.4"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
- "abstract-cw-multi-test 3.0.0-rc (git+https://github.com/permissionlessweb/cw-multi-test-fork?branch=zk-mvp)",
+ "abstract-cw-multi-test",
  "cosmos-sdk-proto",
  "cosmwasm-std",
  "cw-orch-core",
@@ -2452,7 +2542,6 @@ dependencies = [
 [[package]]
 name = "cw-orch-networks"
 version = "0.24.10"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "cw-orch-core",
  "serde",
@@ -2461,7 +2550,6 @@ dependencies = [
 [[package]]
 name = "cw-orch-starship"
 version = "0.7.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "cosmwasm-std",
  "cw-orch-core",
@@ -2484,7 +2572,6 @@ dependencies = [
 [[package]]
 name = "cw-orch-traits"
 version = "0.25.0"
-source = "git+https://github.com/permissionlessweb/cw-orchestrator?branch=zk-mvp#5c24932c40a9c64c1e6e6806f84739ebfb2f4ae7"
 dependencies = [
  "cw-orch-core",
  "prost-types",
@@ -2493,7 +2580,6 @@ dependencies = [
 [[package]]
 name = "cw-schema"
 version = "3.0.3-dev"
-source = "git+https://github.com/permissionlessweb/cosmwasm?branch=zk-mvp#05dfc94748bb8b79866ee0a7fcea02df46d9be0a"
 dependencies = [
  "cw-schema-derive",
  "indexmap 2.13.1",
@@ -2507,7 +2593,6 @@ dependencies = [
 [[package]]
 name = "cw-schema-derive"
 version = "3.0.3-dev"
-source = "git+https://github.com/permissionlessweb/cosmwasm?branch=zk-mvp#05dfc94748bb8b79866ee0a7fcea02df46d9be0a"
 dependencies = [
  "heck 0.5.0",
  "itertools 0.13.0",
@@ -2520,7 +2605,6 @@ dependencies = [
 [[package]]
 name = "cw-storage-plus"
 version = "3.0.1"
-source = "git+https://github.com/permissionlessweb/cw-storage-plus?branch=zk-mvp#d59ae5bf45b8876fb0b4c62bdfd942aa0e0306ff"
 dependencies = [
  "cosmwasm-std",
  "schemars 0.8.22",
@@ -2530,7 +2614,6 @@ dependencies = [
 [[package]]
 name = "cw-utils"
 version = "3.0.0"
-source = "git+https://github.com/permissionlessweb/cw-minus?branch=zk-mvp#5a4cff1fe65e1de8c2f98e222b94ec04c4517831"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -2542,7 +2625,6 @@ dependencies = [
 [[package]]
 name = "cw1"
 version = "3.0.0"
-source = "git+https://github.com/permissionlessweb/cw-plus?branch=zk-mvp#0c11f44be04d839777035cd8db66029cde603c0d"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -2553,7 +2635,6 @@ dependencies = [
 [[package]]
 name = "cw1-whitelist"
 version = "3.0.0"
-source = "git+https://github.com/permissionlessweb/cw-plus?branch=zk-mvp#0c11f44be04d839777035cd8db66029cde603c0d"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -2569,7 +2650,6 @@ dependencies = [
 [[package]]
 name = "cw2"
 version = "3.0.0"
-source = "git+https://github.com/permissionlessweb/cw-minus?branch=zk-mvp#5a4cff1fe65e1de8c2f98e222b94ec04c4517831"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -2583,7 +2663,6 @@ dependencies = [
 [[package]]
 name = "cw20"
 version = "3.0.0"
-source = "git+https://github.com/permissionlessweb/cw-plus?branch=zk-mvp#0c11f44be04d839777035cd8db66029cde603c0d"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -2595,7 +2674,6 @@ dependencies = [
 [[package]]
 name = "cw20-ics20"
 version = "3.0.0"
-source = "git+https://github.com/permissionlessweb/cw-plus?branch=zk-mvp#0c11f44be04d839777035cd8db66029cde603c0d"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
@@ -2622,6 +2700,16 @@ dependencies = [
 
 [[package]]
 name = "darling"
+version = "0.21.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9cdf337090841a411e2a7f3deb9187445851f91b309c0c0a29e05f74a00a48c0"
+dependencies = [
+ "darling_core 0.21.3",
+ "darling_macro 0.21.3",
+]
+
+[[package]]
+name = "darling"
 version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "25ae13da2f202d56bd7f91c25fba009e7717a1e4a1cc98a76d844b65ae912e9d"
@@ -2641,6 +2729,19 @@ dependencies = [
  "proc-macro2 1.0.106",
  "quote",
  "strsim",
+ "syn 2.0.117",
+]
+
+[[package]]
+name = "darling_core"
+version = "0.21.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1247195ecd7e3c85f83c8d2a366e4210d588e802133e1e355180a9870b517ea4"
+dependencies = [
+ "fnv",
+ "ident_case",
+ "proc-macro2 1.0.106",
+ "quote",
  "syn 2.0.117",
 ]
 
@@ -2670,6 +2771,17 @@ dependencies = [
 
 [[package]]
 name = "darling_macro"
+version = "0.21.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d38308df82d1080de0afee5d069fa14b0326a88c14f15c5ccda35b4a6c414c81"
+dependencies = [
+ "darling_core 0.21.3",
+ "quote",
+ "syn 2.0.117",
+]
+
+[[package]]
+name = "darling_macro"
 version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ac3984ec7bd6cfa798e62b4a642426a5be0e68f9401cfc2a01e3fa9ea2fcdb8d"
@@ -2686,6 +2798,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "978747c1d849a7d2ee5e8adc0159961c48fb7e5db2f06af6723b80123bb53856"
 dependencies = [
  "cfg-if",
+ "hashbrown 0.14.5",
+ "lock_api",
+ "once_cell",
+ "parking_lot_core",
+]
+
+[[package]]
+name = "dashmap"
+version = "6.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6361d5c062261c78a176addb82d4c821ae42bed6089de0e12603cd25de2059c"
+dependencies = [
+ "cfg-if",
+ "crossbeam-utils",
  "hashbrown 0.14.5",
  "lock_api",
  "once_cell",
@@ -2733,7 +2859,6 @@ dependencies = [
 [[package]]
 name = "decaf377-fmd"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "ark-ff 0.4.2",
  "ark-serialize 0.4.2",
@@ -2747,7 +2872,6 @@ dependencies = [
 [[package]]
 name = "decaf377-frost"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -2763,7 +2887,6 @@ dependencies = [
 [[package]]
 name = "decaf377-ka"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "ark-ff 0.4.2",
  "decaf377",
@@ -3112,6 +3235,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d0881ea181b1df73ff77ffaaf9c7544ecc11e82fba9b5f27b262a3c73a332555"
 
 [[package]]
+name = "dynasm"
+version = "1.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "add9a102807b524ec050363f09e06f1504214b0e1c7797f64261c891022dce8b"
+dependencies = [
+ "bitflags 1.3.2",
+ "byteorder",
+ "lazy_static",
+ "proc-macro-error 1.0.4",
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "dynasmrt"
+version = "1.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "64fba5a42bd76a17cad4bfa00de168ee1cbfa06a5e8ce992ae880218c05641a9"
+dependencies = [
+ "byteorder",
+ "dynasm",
+ "memmap2 0.5.10",
+]
+
+[[package]]
 name = "ec-gpu"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3293,6 +3442,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "enum-iterator"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4eeac5c5edb79e4e39fe8439ef35207780a11f69c52cbe424ce3dfad4cb78de6"
+dependencies = [
+ "enum-iterator-derive",
+]
+
+[[package]]
+name = "enum-iterator-derive"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c134c37760b27a871ba422106eedbb8247da973a09e82558bf26d619c882b159"
+dependencies = [
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
 name = "enum-ordinalize"
 version = "4.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3307,6 +3476,27 @@ version = "4.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ca9601fb2d62598ee17836250842873a413586e5d7ed88b356e38ddbb0ec631"
 dependencies = [
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 2.0.117",
+]
+
+[[package]]
+name = "enumset"
+version = "1.1.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "839c4174b41e75c8f7306110b2c51996a293b8d1d850edd529011841d9fede7d"
+dependencies = [
+ "enumset_derive",
+]
+
+[[package]]
+name = "enumset_derive"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4bd536557b58c682b217b8fb199afdff47cd3eff260623f19e77074eb073d63a"
+dependencies = [
+ "darling 0.21.3",
  "proc-macro2 1.0.106",
  "quote",
  "syn 2.0.117",
@@ -3884,6 +4074,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "filetime"
+version = "0.2.29"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c287a33c7f0a620c38e641e7f60827713987b3c0f26e8ddc9462cc69cf75759"
+dependencies = [
+ "cfg-if",
+ "libc",
+]
+
+[[package]]
 name = "find-msvc-tools"
 version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4245,7 +4445,7 @@ version = "0.99.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "784f84eebc366e15251c4a8c3acee82a6a6f427949776ecb88377362a9621738"
 dependencies = [
- "proc-macro-error",
+ "proc-macro-error 0.4.12",
  "proc-macro-hack",
  "proc-macro2 1.0.106",
  "quote",
@@ -4313,6 +4513,23 @@ dependencies = [
  "wasip2",
  "wasip3",
 ]
+
+[[package]]
+name = "gimli"
+version = "0.28.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4271d37baee1b8c7e4b708028c57d816cf9d2434acb33a549475f78c181f6253"
+dependencies = [
+ "fallible-iterator",
+ "indexmap 2.13.1",
+ "stable_deref_trait",
+]
+
+[[package]]
+name = "gimli"
+version = "0.32.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e629b9b98ef3dd8afe6ca2bd0f89306cec16d43d907889945bc5d6687f2f13c7"
 
 [[package]]
 name = "git2"
@@ -4404,6 +4621,49 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1b43ede17f21864e81be2fa654110bf1e793774238d86ef8555c37e6519c0403"
 
 [[package]]
+name = "halo2_gadgets"
+version = "0.4.0"
+dependencies = [
+ "arrayvec 0.7.6",
+ "bitvec",
+ "ff",
+ "group",
+ "halo2_poseidon",
+ "halo2_proofs",
+ "lazy_static",
+ "pasta_curves",
+ "proptest",
+ "rand 0.8.5",
+ "sinsemilla",
+ "subtle",
+ "uint 0.9.5",
+]
+
+[[package]]
+name = "halo2_poseidon"
+version = "0.1.0"
+dependencies = [
+ "bitvec",
+ "ff",
+ "group",
+ "pasta_curves",
+]
+
+[[package]]
+name = "halo2_proofs"
+version = "0.3.2"
+dependencies = [
+ "blake2b_simd 1.0.4",
+ "ff",
+ "group",
+ "indexmap 1.9.3",
+ "maybe-rayon",
+ "pasta_curves",
+ "rand_core 0.6.4",
+ "tracing",
+]
+
+[[package]]
 name = "hash32"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4466,6 +4726,12 @@ dependencies = [
  "equivalent",
  "foldhash 0.2.0",
 ]
+
+[[package]]
+name = "hashbrown"
+version = "0.17.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ed5909b6e89a2db4456e54cd5f673791d7eca6732202bbf2a9cc504fe2f9b84a"
 
 [[package]]
 name = "hashers"
@@ -4882,20 +5148,18 @@ dependencies = [
 [[package]]
 name = "ibc"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-apps",
  "ibc-clients",
  "ibc-core",
  "ibc-core-host-cosmos",
- "ibc-derive 0.10.1 (git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp)",
+ "ibc-derive 0.10.1",
  "ibc-primitives",
 ]
 
 [[package]]
 name = "ibc-app-nft-transfer"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-app-nft-transfer-types",
  "ibc-core",
@@ -4905,7 +5169,6 @@ dependencies = [
 [[package]]
 name = "ibc-app-nft-transfer-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "base64 0.22.1",
  "borsh",
@@ -4926,7 +5189,6 @@ dependencies = [
 [[package]]
 name = "ibc-app-transfer"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-app-transfer-types",
  "ibc-core",
@@ -4936,7 +5198,6 @@ dependencies = [
 [[package]]
 name = "ibc-app-transfer-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "borsh",
  "derive_more 1.0.0",
@@ -4954,7 +5215,6 @@ dependencies = [
 [[package]]
 name = "ibc-apps"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-app-nft-transfer",
  "ibc-app-transfer",
@@ -4963,7 +5223,6 @@ dependencies = [
 [[package]]
 name = "ibc-chain-registry"
 version = "0.32.2"
-source = "git+https://github.com/permissionlessweb/hermes?branch=zk-mvp#739beaf6c8135bfdb330bacffd1c13ef35102832"
 dependencies = [
  "async-trait",
  "flex-error",
@@ -4984,7 +5243,6 @@ dependencies = [
 [[package]]
 name = "ibc-client-tendermint"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "derive_more 1.0.0",
  "ibc-client-tendermint-types",
@@ -5001,7 +5259,6 @@ dependencies = [
 [[package]]
 name = "ibc-client-tendermint-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "displaydoc",
  "ibc-core-client-types",
@@ -5018,7 +5275,6 @@ dependencies = [
 [[package]]
 name = "ibc-client-wasm-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "base64 0.22.1",
  "displaydoc",
@@ -5032,7 +5288,6 @@ dependencies = [
 [[package]]
 name = "ibc-clients"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-client-tendermint",
  "ibc-client-wasm-types",
@@ -5041,7 +5296,6 @@ dependencies = [
 [[package]]
 name = "ibc-core"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-core-channel",
  "ibc-core-client",
@@ -5050,14 +5304,13 @@ dependencies = [
  "ibc-core-handler",
  "ibc-core-host",
  "ibc-core-router",
- "ibc-derive 0.10.1 (git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp)",
+ "ibc-derive 0.10.1",
  "ibc-primitives",
 ]
 
 [[package]]
 name = "ibc-core-channel"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-core-channel-types",
  "ibc-core-client",
@@ -5072,7 +5325,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-channel-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "borsh",
  "derive_more 1.0.0",
@@ -5095,7 +5347,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-client"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-core-client-context",
  "ibc-core-client-types",
@@ -5108,7 +5359,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-client-context"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "derive_more 1.0.0",
  "displaydoc",
@@ -5124,7 +5374,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-client-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "borsh",
  "derive_more 1.0.0",
@@ -5144,7 +5393,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-commitment-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "borsh",
  "derive_more 1.0.0",
@@ -5163,7 +5411,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-connection"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-client-wasm-types",
  "ibc-core-client",
@@ -5177,7 +5424,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-connection-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "borsh",
  "derive_more 1.0.0",
@@ -5198,7 +5444,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-handler"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "ibc-core-channel",
  "ibc-core-client",
@@ -5213,7 +5458,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-handler-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "borsh",
  "derive_more 1.0.0",
@@ -5237,7 +5481,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-host"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "derive_more 1.0.0",
  "displaydoc",
@@ -5255,7 +5498,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-host-cosmos"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "derive_more 1.0.0",
  "displaydoc",
@@ -5278,7 +5520,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-host-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "base64 0.22.1",
  "borsh",
@@ -5295,7 +5536,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-router"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "derive_more 1.0.0",
  "displaydoc",
@@ -5309,7 +5549,6 @@ dependencies = [
 [[package]]
 name = "ibc-core-router-types"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "borsh",
  "derive_more 1.0.0",
@@ -5328,8 +5567,6 @@ dependencies = [
 [[package]]
 name = "ibc-derive"
 version = "0.10.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "27e93e76ce4da46027a59a5f2c3152e6d4adc4a9d541c782ff69b89e7fa2ccb8"
 dependencies = [
  "proc-macro2 1.0.106",
  "quote",
@@ -5339,7 +5576,8 @@ dependencies = [
 [[package]]
 name = "ibc-derive"
 version = "0.10.1"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "27e93e76ce4da46027a59a5f2c3152e6d4adc4a9d541c782ff69b89e7fa2ccb8"
 dependencies = [
  "proc-macro2 1.0.106",
  "quote",
@@ -5349,7 +5587,6 @@ dependencies = [
 [[package]]
 name = "ibc-middleware-module"
 version = "0.2.0"
-source = "git+https://github.com/permissionlessweb/ibc-middleware?branch=zk-mvp#adc99bec3cf961ad7c7dfae665e324f6740d46bf"
 dependencies = [
  "ibc-core-channel-types",
  "ibc-core-host-types",
@@ -5361,7 +5598,6 @@ dependencies = [
 [[package]]
 name = "ibc-middleware-module-macros"
 version = "0.2.0"
-source = "git+https://github.com/permissionlessweb/ibc-middleware?branch=zk-mvp#adc99bec3cf961ad7c7dfae665e324f6740d46bf"
 dependencies = [
  "proc-macro2 1.0.106",
  "quote",
@@ -5370,7 +5606,6 @@ dependencies = [
 [[package]]
 name = "ibc-middleware-overflow-receive"
 version = "0.5.0"
-source = "git+https://github.com/permissionlessweb/ibc-middleware?branch=zk-mvp#adc99bec3cf961ad7c7dfae665e324f6740d46bf"
 dependencies = [
  "ibc-app-transfer-types",
  "ibc-core-channel-types",
@@ -5387,7 +5622,6 @@ dependencies = [
 [[package]]
 name = "ibc-middleware-packet-forward"
 version = "0.10.0"
-source = "git+https://github.com/permissionlessweb/ibc-middleware?branch=zk-mvp#adc99bec3cf961ad7c7dfae665e324f6740d46bf"
 dependencies = [
  "borsh",
  "dur",
@@ -5408,7 +5642,6 @@ dependencies = [
 [[package]]
 name = "ibc-primitives"
 version = "0.57.0"
-source = "git+https://github.com/permissionlessweb/ibc-rs?branch=zk-mvp#0f50609533c0b11ab759d4e0572ce0601a834da2"
 dependencies = [
  "borsh",
  "derive_more 1.0.0",
@@ -5425,7 +5658,6 @@ dependencies = [
 [[package]]
 name = "ibc-proto"
 version = "0.52.0"
-source = "git+https://github.com/permissionlessweb/ibc-proto-rs?branch=zk-mvp#dbef678730b1c920515c3728addcffc657c94b3d"
 dependencies = [
  "base64 0.22.1",
  "bytes",
@@ -5445,7 +5677,6 @@ dependencies = [
 [[package]]
 name = "ibc-relayer"
 version = "0.32.2"
-source = "git+https://github.com/permissionlessweb/hermes?branch=zk-mvp#739beaf6c8135bfdb330bacffd1c13ef35102832"
 dependencies = [
  "anyhow",
  "async-stream",
@@ -5522,7 +5753,6 @@ dependencies = [
 [[package]]
 name = "ibc-relayer-types"
 version = "0.32.2"
-source = "git+https://github.com/permissionlessweb/hermes?branch=zk-mvp#739beaf6c8135bfdb330bacffd1c13ef35102832"
 dependencies = [
  "bytes",
  "derive_more 0.99.20",
@@ -5549,11 +5779,10 @@ dependencies = [
 [[package]]
 name = "ibc-telemetry"
 version = "0.32.2"
-source = "git+https://github.com/permissionlessweb/hermes?branch=zk-mvp#739beaf6c8135bfdb330bacffd1c13ef35102832"
 dependencies = [
  "axum",
  "axum-server",
- "dashmap",
+ "dashmap 5.5.3",
  "ibc-relayer-types",
  "moka",
  "once_cell",
@@ -5571,7 +5800,6 @@ dependencies = [
 [[package]]
 name = "ibc-types"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "ibc-types-core-channel",
  "ibc-types-core-client",
@@ -5588,7 +5816,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-core-channel"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5620,7 +5847,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-core-client"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5646,7 +5872,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-core-commitment"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5680,7 +5905,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-core-connection"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5709,7 +5933,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-domain-type"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5719,7 +5942,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-identifier"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "displaydoc",
  "serde",
@@ -5729,7 +5951,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-lightclients-tendermint"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5765,7 +5986,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-path"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "bytes",
  "derive_more 0.99.20",
@@ -5787,7 +6007,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-timestamp"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "bytes",
  "displaydoc",
@@ -5805,7 +6024,6 @@ dependencies = [
 [[package]]
 name = "ibc-types-transfer"
 version = "0.16.0"
-source = "git+https://github.com/permissionlessweb/ibc-types?branch=zk-mvp#bddd4113d0b43477089e22db27ecd20b853171c2"
 dependencies = [
  "displaydoc",
  "serde",
@@ -5827,7 +6045,6 @@ dependencies = [
 [[package]]
 name = "ics23"
 version = "0.12.0"
-source = "git+https://github.com/permissionlessweb/ics23?branch=zk-mvp#383c266b855d0047c3235869a910a32908615237"
 dependencies = [
  "anyhow",
  "blake2",
@@ -6080,7 +6297,6 @@ dependencies = [
 [[package]]
 name = "informalsystems-pbjson"
 version = "0.7.0"
-source = "git+https://github.com/permissionlessweb/pbjson?branch=zk-mvp#7a48b871416034c16941259823f4a40d534355a5"
 dependencies = [
  "base64 0.21.7",
  "serde",
@@ -6089,7 +6305,6 @@ dependencies = [
 [[package]]
 name = "informalsystems-pbjson-build"
 version = "0.7.0"
-source = "git+https://github.com/permissionlessweb/pbjson?branch=zk-mvp#7a48b871416034c16941259823f4a40d534355a5"
 dependencies = [
  "heck 0.4.1",
  "itertools 0.12.1",
@@ -6100,7 +6315,6 @@ dependencies = [
 [[package]]
 name = "informalsystems-pbjson-types"
 version = "0.7.0"
-source = "git+https://github.com/permissionlessweb/pbjson?branch=zk-mvp#7a48b871416034c16941259823f4a40d534355a5"
 dependencies = [
  "bytes",
  "chrono",
@@ -6255,7 +6469,6 @@ dependencies = [
 [[package]]
 name = "jmt"
 version = "0.12.0"
-source = "git+https://github.com/permissionlessweb/jmt?branch=zk-mvp#ac7a5c326d04d3f72cf6b3d9492d2518a7f4ad2d"
 dependencies = [
  "anyhow",
  "borsh",
@@ -6546,7 +6759,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "55cb077ad656299f160924eb2912aa147d7339ea7d69e1b5517326fdcec3c1ca"
 dependencies = [
  "ascii-canvas",
- "bit-set",
+ "bit-set 0.5.3",
  "ena",
  "itertools 0.11.0",
  "lalrpop-util",
@@ -6574,6 +6787,9 @@ name = "lazy_static"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
+dependencies = [
+ "spin 0.9.8",
+]
 
 [[package]]
 name = "lazycell"
@@ -6592,6 +6808,12 @@ dependencies = [
  "slab",
  "thiserror 2.0.18",
 ]
+
+[[package]]
+name = "leb128"
+version = "0.2.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6cc46bac87ef8093eed6f272babb833b6443374399985ac8ed28471ee0918545"
 
 [[package]]
 name = "leb128fmt"
@@ -6772,6 +6994,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "mach2"
+version = "0.4.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d640282b302c0bb0a2a8e0233ead9035e3bed871f0b7e81fe4a1ec829765db44"
+dependencies = [
+ "libc",
+]
+
+[[package]]
 name = "masp_note_encryption"
 version = "3.0.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6858,6 +7089,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "47e1ffaa40ddd1f3ed91f717a33c8c0ee23fff369e3aa8772b9605cc1d22f4c3"
 
 [[package]]
+name = "maybe-rayon"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ea1f30cedd69f0a2954655f7188c6a834246d2bcf1e315e2ac40c4b24dc9519"
+dependencies = [
+ "cfg-if",
+ "rayon",
+]
+
+[[package]]
 name = "md-5"
 version = "0.10.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6880,6 +7121,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "83faa42c0a078c393f6b29d5db232d8be22776a891f8f56e5284faee4a20b327"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "memmap2"
+version = "0.6.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d28bba84adfe6646737845bc5ebbfa2c08424eb1c37e94a1fd2a82adb56a872"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "memoffset"
+version = "0.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "488016bfae457b036d996092f6cb448677611ce4449e970ceaf42695203f218a"
+dependencies = [
+ "autocfg",
 ]
 
 [[package]]
@@ -6972,10 +7231,36 @@ dependencies = [
 ]
 
 [[package]]
+name = "more-asserts"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7843ec2de400bcbc6a6328c958dc38e5359da6e93e72e37bc5246bf1ae776389"
+
+[[package]]
 name = "multimap"
 version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1d87ecb2933e8aeadb3e3a02b828fed80a7528047e68b4f424523a0981a3a084"
+
+[[package]]
+name = "munge"
+version = "0.4.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5e17401f259eba956ca16491461b6e8f72913a0a114e39736ce404410f915a0c"
+dependencies = [
+ "munge_macro",
+]
+
+[[package]]
+name = "munge_macro"
+version = "0.4.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4568f25ccbd45ab5d5603dc34318c1ec56b117531781260002151b8530a9f931"
+dependencies = [
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 2.0.117",
+]
 
 [[package]]
 name = "nam-bellperson"
@@ -6994,7 +7279,7 @@ dependencies = [
  "fs2",
  "group",
  "log",
- "memmap2",
+ "memmap2 0.5.10",
  "nam-blstrs",
  "nam-ec-gpu-gen",
  "pairing",
@@ -7127,7 +7412,6 @@ dependencies = [
 [[package]]
 name = "nam-sparse-merkle-tree"
 version = "0.3.3-nam.0"
-source = "git+https://github.com/permissionlessweb/sparse-merkle-tree?branch=zk-mvp#10d756eaad805d50ed6ef76449c093dfaab21aca"
 dependencies = [
  "borsh",
  "cfg-if",
@@ -7139,7 +7423,6 @@ dependencies = [
 [[package]]
 name = "namada_account"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "namada_core",
@@ -7151,7 +7434,6 @@ dependencies = [
 [[package]]
 name = "namada_controller"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "namada_core",
  "smooth-operator",
@@ -7161,7 +7443,6 @@ dependencies = [
 [[package]]
 name = "namada_core"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "bech32 0.11.1",
  "borsh",
@@ -7210,7 +7491,6 @@ dependencies = [
 [[package]]
 name = "namada_ethereum_bridge"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "ethers",
@@ -7238,7 +7518,6 @@ dependencies = [
 [[package]]
 name = "namada_events"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "namada_core",
@@ -7252,7 +7531,6 @@ dependencies = [
 [[package]]
 name = "namada_gas"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "namada_core",
@@ -7265,7 +7543,6 @@ dependencies = [
 [[package]]
 name = "namada_governance"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "itertools 0.14.0",
@@ -7288,7 +7565,6 @@ dependencies = [
 [[package]]
 name = "namada_ibc"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "data-encoding",
@@ -7323,7 +7599,6 @@ dependencies = [
 [[package]]
 name = "namada_io"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "async-trait",
  "kdam",
@@ -7336,7 +7611,6 @@ dependencies = [
 [[package]]
 name = "namada_macros"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "data-encoding",
  "proc-macro2 1.0.106",
@@ -7348,7 +7622,6 @@ dependencies = [
 [[package]]
 name = "namada_merkle_tree"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "eyre",
@@ -7363,7 +7636,6 @@ dependencies = [
 [[package]]
 name = "namada_parameters"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "namada_core",
  "namada_macros",
@@ -7378,7 +7650,6 @@ dependencies = [
 [[package]]
 name = "namada_proof_of_stake"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "itertools 0.14.0",
@@ -7402,7 +7673,6 @@ dependencies = [
 [[package]]
 name = "namada_replay_protection"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "namada_core",
 ]
@@ -7410,7 +7680,6 @@ dependencies = [
 [[package]]
 name = "namada_sdk"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "async-trait",
  "bech32 0.11.1",
@@ -7480,7 +7749,6 @@ dependencies = [
 [[package]]
 name = "namada_shielded_token"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "async-trait",
  "borsh",
@@ -7523,7 +7791,6 @@ dependencies = [
 [[package]]
 name = "namada_state"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "clru",
@@ -7546,7 +7813,6 @@ dependencies = [
 [[package]]
 name = "namada_storage"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "itertools 0.14.0",
@@ -7565,7 +7831,6 @@ dependencies = [
 [[package]]
 name = "namada_systems"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "namada_core",
  "namada_events",
@@ -7575,7 +7840,6 @@ dependencies = [
 [[package]]
 name = "namada_token"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "namada_core",
@@ -7593,7 +7857,6 @@ dependencies = [
 [[package]]
 name = "namada_trans_token"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "konst",
  "namada_core",
@@ -7610,7 +7873,6 @@ dependencies = [
 [[package]]
 name = "namada_tx"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "ark-bls12-381",
  "bitflags 2.11.0",
@@ -7639,7 +7901,6 @@ dependencies = [
 [[package]]
 name = "namada_tx_env"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "namada_core",
  "namada_events",
@@ -7649,7 +7910,6 @@ dependencies = [
 [[package]]
 name = "namada_vm"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "clru",
@@ -7673,7 +7933,6 @@ dependencies = [
 [[package]]
 name = "namada_vote_ext"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "borsh",
  "namada_core",
@@ -7685,7 +7944,6 @@ dependencies = [
 [[package]]
 name = "namada_vp"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "namada_core",
  "namada_events",
@@ -7701,7 +7959,6 @@ dependencies = [
 [[package]]
 name = "namada_vp_env"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "derivative",
  "masp_primitives",
@@ -7716,7 +7973,6 @@ dependencies = [
 [[package]]
 name = "namada_wallet"
 version = "0.251.0"
-source = "git+https://github.com/permissionlessweb/namada?branch=main#d243a89b9e934d7e3873ed94d1df6d99b4e94959"
 dependencies = [
  "bimap",
  "bip32",
@@ -7938,6 +8194,29 @@ dependencies = [
  "proc-macro2 1.0.106",
  "quote",
  "syn 2.0.117",
+]
+
+[[package]]
+name = "object"
+version = "0.32.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a6a622008b6e321afc04970976f62ee297fdbaa6f95318ca343e3eebb9648441"
+dependencies = [
+ "crc32fast",
+ "flate2",
+ "hashbrown 0.14.5",
+ "indexmap 2.13.1",
+ "memchr",
+ "ruzstd",
+]
+
+[[package]]
+name = "object"
+version = "0.37.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ff76201f031d8863c38aa7f905eca4f53abbfa15f609db4277d44cd8938f33fe"
+dependencies = [
+ "memchr",
 ]
 
 [[package]]
@@ -8264,8 +8543,10 @@ version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d3e57598f73cc7e1b2ac63c79c517b31a0877cd7c402cdcaa311b5208de7a095"
 dependencies = [
+ "blake2b_simd 1.0.4",
  "ff",
  "group",
+ "lazy_static",
  "rand 0.8.5",
  "static_assertions",
  "subtle",
@@ -8380,7 +8661,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-app"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8449,7 +8729,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-asset"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8489,7 +8768,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-auction"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8534,7 +8812,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-community-pool"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8564,7 +8841,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-compact-block"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8595,7 +8871,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-custody"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "argon2",
@@ -8631,7 +8906,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-dex"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8685,7 +8959,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-distributions"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -8701,7 +8974,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-fee"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8728,7 +9000,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-funding"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-groth16",
@@ -8759,7 +9030,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-governance"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8808,7 +9078,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-ibc"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8845,7 +9114,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-keys"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "aes",
  "anyhow",
@@ -8889,7 +9157,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-num"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -8925,7 +9192,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-proof-params"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ec 0.4.2",
@@ -8954,7 +9220,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-proto"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -8987,7 +9252,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-sct"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -9024,7 +9288,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-shielded-pool"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -9076,7 +9339,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-stake"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -9117,7 +9379,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-tct"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "ark-ed-on-bls12-377",
  "ark-ff 0.4.2",
@@ -9146,7 +9407,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-tower-trace"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "futures",
  "hex",
@@ -9168,7 +9428,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-transaction"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-ff 0.4.2",
@@ -9221,7 +9480,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-txhash"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "blake2b_simd 1.0.4",
@@ -9235,7 +9493,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-view"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-std 0.4.0",
@@ -9295,7 +9552,6 @@ dependencies = [
 [[package]]
 name = "penumbra-sdk-wallet"
 version = "2.1.1"
-source = "git+https://github.com/permissionlessweb/penumbra?branch=main#92b0f469c84e778b5f2eeaf86c862205159a7341"
 dependencies = [
  "anyhow",
  "ark-std 0.4.0",
@@ -9524,7 +9780,7 @@ dependencies = [
 name = "polytone-listener"
 version = "3.0.0-rc"
 dependencies = [
- "abstract-cw-multi-test 3.0.0-rc",
+ "abstract-cw-multi-test",
  "abstract-polytone",
  "abstract-polytone-note",
  "anyhow",
@@ -9717,7 +9973,20 @@ version = "0.4.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "18f33027081eba0a6d8aba6d1b1c3a3be58cbb12106341c2d5759fcd9b5277e7"
 dependencies = [
- "proc-macro-error-attr",
+ "proc-macro-error-attr 0.4.12",
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 1.0.109",
+ "version_check",
+]
+
+[[package]]
+name = "proc-macro-error"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "da25490ff9892aab3fcf7c36f08cfb902dd3e71ca0f9f9517bea02a73a5ce38c"
+dependencies = [
+ "proc-macro-error-attr 1.0.4",
  "proc-macro2 1.0.106",
  "quote",
  "syn 1.0.109",
@@ -9735,6 +10004,39 @@ dependencies = [
  "syn 1.0.109",
  "syn-mid",
  "version_check",
+]
+
+[[package]]
+name = "proc-macro-error-attr"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1be40180e52ecc98ad80b184934baf3d0d29f979574e439af5a55274b35f869"
+dependencies = [
+ "proc-macro2 1.0.106",
+ "quote",
+ "version_check",
+]
+
+[[package]]
+name = "proc-macro-error-attr2"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "96de42df36bb9bba5542fe9f1a054b8cc87e172759a1868aa05c1f3acc89dfc5"
+dependencies = [
+ "proc-macro2 1.0.106",
+ "quote",
+]
+
+[[package]]
+name = "proc-macro-error2"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "11ec05c52be0a07b08061f7dd003e7d7092e0472bc731b4af7bb1ef876109802"
+dependencies = [
+ "proc-macro-error-attr2",
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 2.0.117",
 ]
 
 [[package]]
@@ -9782,12 +10084,16 @@ version = "1.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4b45fcc2344c680f5025fe57779faef368840d0bd1f42f216291f0dc4ace4744"
 dependencies = [
+ "bit-set 0.8.0",
+ "bit-vec 0.8.0",
  "bitflags 2.11.0",
  "num-traits",
  "rand 0.9.2",
  "rand_chacha 0.9.0",
  "rand_xorshift 0.4.0",
  "regex-syntax",
+ "rusty-fork",
+ "tempfile",
  "unarray",
 ]
 
@@ -9856,7 +10162,16 @@ version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0738ccf7ea06b608c10564b31debd4f5bc5e197fc8bfe088f68ae5ce81e7a4f1"
 dependencies = [
- "ptr_meta_derive",
+ "ptr_meta_derive 0.1.4",
+]
+
+[[package]]
+name = "ptr_meta"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0b9a0cf95a1196af61d4f1cbdab967179516d9a4a4312af1f31948f8f6224a79"
+dependencies = [
+ "ptr_meta_derive 0.3.1",
 ]
 
 [[package]]
@@ -9868,6 +10183,17 @@ dependencies = [
  "proc-macro2 1.0.106",
  "quote",
  "syn 1.0.109",
+]
+
+[[package]]
+name = "ptr_meta_derive"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7347867d0a7e1208d93b46767be83e2b8f978c3dad35f775ac8d8847551d6fe1"
+dependencies = [
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 2.0.117",
 ]
 
 [[package]]
@@ -9889,6 +10215,12 @@ checksum = "50793def1b900256624a709439404384204a5dc3a6ec580281bfaac35e882e90"
 dependencies = [
  "pulldown-cmark",
 ]
+
+[[package]]
+name = "quick-error"
+version = "1.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1d01941d82fa2ab50be1e79e6714289dd7cde78eba4c074bc5a4374f650dfe0"
 
 [[package]]
 name = "quote"
@@ -9938,6 +10270,15 @@ name = "radium"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dc33ff2d4973d518d823d61aa239014831e521c75da58e3df4840d3f47749d09"
+
+[[package]]
+name = "rancor"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a063ea72381527c2a0561da9c80000ef822bdd7c3241b1cc1b12100e3df081ee"
+dependencies = [
+ "ptr_meta 0.3.1",
+]
 
 [[package]]
 name = "rand"
@@ -10132,12 +10473,33 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dc897dd8d9e8bd1ed8cdad82b5966c3e0ecae09fb1907d58efaa013543185d0a"
 
 [[package]]
+name = "region"
+version = "3.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6b6ebd13bc009aef9cd476c1310d49ac354d36e240cf1bd753290f3dc7199a7"
+dependencies = [
+ "bitflags 1.3.2",
+ "libc",
+ "mach2",
+ "windows-sys 0.52.0",
+]
+
+[[package]]
 name = "rend"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "71fe3824f5629716b1589be05dacd749f6aa084c87e00e016714a8cdfccc997c"
 dependencies = [
- "bytecheck",
+ "bytecheck 0.6.12",
+]
+
+[[package]]
+name = "rend"
+version = "0.5.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cadadef317c2f20755a64d7fdc48f9e7178ee6b0e1f7fce33fa60f1d68a276e6"
+dependencies = [
+ "bytecheck 0.8.2",
 ]
 
 [[package]]
@@ -10285,13 +10647,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2297bf9c81a3f0dc96bc9521370b88f054168c29826a75e89c55ff196e7ed6a1"
 dependencies = [
  "bitvec",
- "bytecheck",
+ "bytecheck 0.6.12",
  "bytes",
  "hashbrown 0.12.3",
- "ptr_meta",
- "rend",
- "rkyv_derive",
+ "ptr_meta 0.1.4",
+ "rend 0.4.2",
+ "rkyv_derive 0.7.46",
  "seahash",
+ "tinyvec",
+ "uuid 1.23.0",
+]
+
+[[package]]
+name = "rkyv"
+version = "0.8.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "73389e0c99e664f919275ab5b5b0471391fe9a8de61e1dff9b1eaf56a90f16e3"
+dependencies = [
+ "bytecheck 0.8.2",
+ "bytes",
+ "hashbrown 0.17.1",
+ "indexmap 2.13.1",
+ "munge",
+ "ptr_meta 0.3.1",
+ "rancor",
+ "rend 0.5.3",
+ "rkyv_derive 0.8.16",
  "tinyvec",
  "uuid 1.23.0",
 ]
@@ -10305,6 +10686,17 @@ dependencies = [
  "proc-macro2 1.0.106",
  "quote",
  "syn 1.0.109",
+]
+
+[[package]]
+name = "rkyv_derive"
+version = "0.8.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5d2ed0b54125315fb36bd021e82d314d1c126548f871634b483f46b31d13cac6"
+dependencies = [
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 2.0.117",
 ]
 
 [[package]]
@@ -10410,7 +10802,7 @@ dependencies = [
  "bytes",
  "num-traits",
  "rand 0.8.5",
- "rkyv",
+ "rkyv 0.7.46",
  "serde",
  "serde_json",
  "wasm-bindgen",
@@ -10432,6 +10824,12 @@ dependencies = [
  "quote",
  "syn 1.0.109",
 ]
+
+[[package]]
+name = "rustc-demangle"
+version = "0.1.27"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b50b8869d9fc858ce7266cce0194bd74df58b9d0e3f6df3a9fc8eb470d95c09d"
 
 [[package]]
 name = "rustc-hash"
@@ -10615,6 +11013,29 @@ name = "rustversion"
 version = "1.0.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b39cdef0fa800fc44525c84ccb54a029961a8215f9619753635a9c0d2538d46d"
+
+[[package]]
+name = "rusty-fork"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cc6bf79ff24e648f6da1f8d1f011e9cac26491b619e6b9280f2b47f1774e6ee2"
+dependencies = [
+ "fnv",
+ "quick-error",
+ "tempfile",
+ "wait-timeout",
+]
+
+[[package]]
+name = "ruzstd"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58c4eb8a81997cf040a091d1f7e1938aeab6749d3a0dfa73af43cdc32393483d"
+dependencies = [
+ "byteorder",
+ "derive_more 0.99.20",
+ "twox-hash",
+]
 
 [[package]]
 name = "ryu"
@@ -10960,6 +11381,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "self_cell"
+version = "1.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b12e76d157a900eb52e81bc6e9f3069344290341720e9178cde2407113ac8d89"
+
+[[package]]
 name = "semver"
 version = "1.0.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -11008,6 +11435,17 @@ checksum = "f3a1a3341211875ef120e117ea7fd5228530ae7e7036a779fdc9117be6b3282c"
 dependencies = [
  "ordered-float 2.10.1",
  "serde",
+]
+
+[[package]]
+name = "serde-wasm-bindgen"
+version = "0.4.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e3b4c031cd0d9014307d82b8abf653c0290fbdaeb4c02d00c63cf52f728628bf"
+dependencies = [
+ "js-sys",
+ "serde",
+ "wasm-bindgen",
 ]
 
 [[package]]
@@ -11245,6 +11683,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "shared-buffer"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f6c99835bad52957e7aa241d3975ed17c1e5f8c92026377d117a606f36b84b16"
+dependencies = [
+ "bytes",
+ "memmap2 0.6.2",
+]
+
+[[package]]
 name = "shell-words"
 version = "1.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -11298,6 +11746,17 @@ dependencies = [
  "num-traits",
  "thiserror 2.0.18",
  "time",
+]
+
+[[package]]
+name = "sinsemilla"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3d268ae0ea06faafe1662e9967cd4f9022014f5eeb798e0c302c876df8b7af9c"
+dependencies = [
+ "group",
+ "pasta_curves",
+ "subtle",
 ]
 
 [[package]]
@@ -11673,6 +12132,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369"
 
 [[package]]
+name = "tar"
+version = "0.4.46"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3f6221d9a6003c78398e3b239969f352578258df48c8eb051caadae0015bc840"
+dependencies = [
+ "filetime",
+ "libc",
+ "xattr",
+]
+
+[[package]]
+name = "target-lexicon"
+version = "0.12.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "61c41af27dd6d1e27b1b16b489db798443478cef1f06a660c96db617ba5de3b1"
+
+[[package]]
 name = "temp-env"
 version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -11697,7 +12173,6 @@ dependencies = [
 [[package]]
 name = "tendermint"
 version = "0.40.4"
-source = "git+https://github.com/permissionlessweb/tendermint-rs?branch=zk-mvp#2d1e8ff25ec07e4badb732818c0bd7ff8526b511"
 dependencies = [
  "bytes",
  "digest 0.10.7",
@@ -11726,7 +12201,6 @@ dependencies = [
 [[package]]
 name = "tendermint-config"
 version = "0.40.4"
-source = "git+https://github.com/permissionlessweb/tendermint-rs?branch=zk-mvp#2d1e8ff25ec07e4badb732818c0bd7ff8526b511"
 dependencies = [
  "flex-error",
  "serde",
@@ -11739,7 +12213,6 @@ dependencies = [
 [[package]]
 name = "tendermint-light-client"
 version = "0.40.4"
-source = "git+https://github.com/permissionlessweb/tendermint-rs?branch=zk-mvp#2d1e8ff25ec07e4badb732818c0bd7ff8526b511"
 dependencies = [
  "contracts",
  "crossbeam-channel",
@@ -11763,7 +12236,6 @@ dependencies = [
 [[package]]
 name = "tendermint-light-client-detector"
 version = "0.40.4"
-source = "git+https://github.com/permissionlessweb/tendermint-rs?branch=zk-mvp#2d1e8ff25ec07e4badb732818c0bd7ff8526b511"
 dependencies = [
  "crossbeam-channel",
  "derive_more 0.99.20",
@@ -11785,7 +12257,6 @@ dependencies = [
 [[package]]
 name = "tendermint-light-client-verifier"
 version = "0.40.4"
-source = "git+https://github.com/permissionlessweb/tendermint-rs?branch=zk-mvp#2d1e8ff25ec07e4badb732818c0bd7ff8526b511"
 dependencies = [
  "derive_more 0.99.20",
  "flex-error",
@@ -11797,7 +12268,6 @@ dependencies = [
 [[package]]
 name = "tendermint-proto"
 version = "0.40.4"
-source = "git+https://github.com/permissionlessweb/tendermint-rs?branch=zk-mvp#2d1e8ff25ec07e4badb732818c0bd7ff8526b511"
 dependencies = [
  "borsh",
  "bytes",
@@ -11815,7 +12285,6 @@ dependencies = [
 [[package]]
 name = "tendermint-rpc"
 version = "0.40.4"
-source = "git+https://github.com/permissionlessweb/tendermint-rs?branch=zk-mvp#2d1e8ff25ec07e4badb732818c0bd7ff8526b511"
 dependencies = [
  "async-trait",
  "async-tungstenite",
@@ -12352,7 +12821,6 @@ dependencies = [
 [[package]]
 name = "tower-abci"
 version = "0.19.1"
-source = "git+https://github.com/permissionlessweb/tower-abci?branch=zk-mvp#cf17695282ea2c9ad5c0dd8bc87e1b13787fc84f"
 dependencies = [
  "bytes",
  "futures",
@@ -12596,6 +13064,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "twox-hash"
+version = "1.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "97fee6b57c6a41524a810daee9286c02d7752c4253064d0b05472833a438f675"
+dependencies = [
+ "cfg-if",
+ "static_assertions",
+]
+
+[[package]]
 name = "typed-builder"
 version = "0.20.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -12786,6 +13264,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1"
 
 [[package]]
+name = "ureq"
+version = "2.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "02d1a66277ed75f640d608235660df48c8e3c19f3b4edb6a263315626cc3c01d"
+dependencies = [
+ "base64 0.22.1",
+ "flate2",
+ "log",
+ "once_cell",
+ "rustls 0.23.37",
+ "rustls-pki-types",
+ "url",
+ "webpki-roots 0.26.11",
+]
+
+[[package]]
 name = "url"
 version = "2.5.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -12886,6 +13380,15 @@ dependencies = [
  "proc-macro2 1.0.106",
  "quote",
  "syn 2.0.117",
+]
+
+[[package]]
+name = "wait-timeout"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "09ac3b126d3914f9849036f826e054cbabdc8519970b8998ddaf3b5bd3c65f11"
+dependencies = [
+ "libc",
 ]
 
 [[package]]
@@ -13009,12 +13512,173 @@ dependencies = [
 ]
 
 [[package]]
+name = "wasmer"
+version = "5.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8b104b9437e9100943fb01880cc210ebe250cc4aa2f7e121f068033a76d29cc4"
+dependencies = [
+ "bindgen 0.70.1",
+ "bytes",
+ "cfg-if",
+ "cmake",
+ "indexmap 2.13.1",
+ "js-sys",
+ "more-asserts",
+ "rustc-demangle",
+ "serde",
+ "serde-wasm-bindgen",
+ "shared-buffer",
+ "tar",
+ "target-lexicon",
+ "thiserror 1.0.69",
+ "tracing",
+ "ureq",
+ "wasm-bindgen",
+ "wasmer-compiler",
+ "wasmer-compiler-singlepass",
+ "wasmer-derive",
+ "wasmer-types",
+ "wasmer-vm",
+ "windows-sys 0.59.0",
+]
+
+[[package]]
+name = "wasmer-compiler"
+version = "5.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d9dd5c640b9e6dcc64bcad987b3133e19f1c9919a8e0c732eb11a33f650bbf54"
+dependencies = [
+ "backtrace",
+ "bytes",
+ "cfg-if",
+ "enum-iterator",
+ "enumset",
+ "leb128",
+ "libc",
+ "memmap2 0.6.2",
+ "more-asserts",
+ "object 0.32.2",
+ "region",
+ "rkyv 0.8.16",
+ "self_cell",
+ "shared-buffer",
+ "smallvec",
+ "target-lexicon",
+ "thiserror 1.0.69",
+ "wasmer-types",
+ "wasmer-vm",
+ "wasmparser 0.216.1",
+ "windows-sys 0.59.0",
+ "xxhash-rust",
+]
+
+[[package]]
+name = "wasmer-compiler-singlepass"
+version = "5.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b95cad6ba04afeb3a339529e880c3290f8516bc6324c3082155a79f00129f5a1"
+dependencies = [
+ "byteorder",
+ "dynasm",
+ "dynasmrt",
+ "enumset",
+ "gimli 0.28.1",
+ "more-asserts",
+ "rayon",
+ "smallvec",
+ "wasmer-compiler",
+ "wasmer-types",
+]
+
+[[package]]
+name = "wasmer-derive"
+version = "5.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b4c4970530327054e6effa876eadfd57079866c7429e31fde2568d6354ec61d"
+dependencies = [
+ "proc-macro-error2",
+ "proc-macro2 1.0.106",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "wasmer-middlewares"
+version = "5.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "111eee5478867554d4496f89f472499fe90469f7473dbf90e466c1deb5505293"
+dependencies = [
+ "wasmer",
+ "wasmer-types",
+ "wasmer-vm",
+]
+
+[[package]]
+name = "wasmer-types"
+version = "5.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "554f389473d61915754b1873c5ef392a1a75b55c7d616e2a78f67c1af45785ae"
+dependencies = [
+ "bytecheck 0.6.12",
+ "enum-iterator",
+ "enumset",
+ "getrandom 0.2.17",
+ "hex",
+ "indexmap 2.13.1",
+ "more-asserts",
+ "rkyv 0.8.16",
+ "sha2 0.10.9",
+ "target-lexicon",
+ "thiserror 1.0.69",
+ "xxhash-rust",
+]
+
+[[package]]
+name = "wasmer-vm"
+version = "5.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "20b3f40e1e18d6cd040d6d1ea32affbf2f64ff059eff3b85614bccb8ff95c59b"
+dependencies = [
+ "backtrace",
+ "cc",
+ "cfg-if",
+ "corosensei",
+ "crossbeam-queue",
+ "dashmap 6.2.1",
+ "enum-iterator",
+ "fnv",
+ "indexmap 2.13.1",
+ "libc",
+ "mach2",
+ "memoffset",
+ "more-asserts",
+ "region",
+ "scopeguard",
+ "thiserror 1.0.69",
+ "wasmer-types",
+ "windows-sys 0.59.0",
+]
+
+[[package]]
 name = "wasmparser"
 version = "0.121.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9dbe55c8f9d0dbd25d9447a5a889ff90c0cc3feaa7395310d3d826b2c703eaab"
 dependencies = [
  "bitflags 2.11.0",
+ "indexmap 2.13.1",
+ "semver",
+]
+
+[[package]]
+name = "wasmparser"
+version = "0.216.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1cc7c63191ae61c70befbe6045b9be65ef2082fa89421a386ae172cb1e08e92d"
+dependencies = [
+ "ahash 0.8.12",
+ "bitflags 2.11.0",
+ "hashbrown 0.14.5",
  "indexmap 2.13.1",
  "semver",
 ]
@@ -13060,6 +13724,15 @@ name = "webpki-roots"
 version = "0.25.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5f20c57d8d7db6d3b86154206ae5d8fba62dd39573114de97c2cb0578251f8e1"
+
+[[package]]
+name = "webpki-roots"
+version = "0.26.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "521bc38abb08001b01866da9f51eb7c5d647a19260e00054a8c7fd5f9e57f7a9"
+dependencies = [
+ "webpki-roots 1.0.6",
+]
 
 [[package]]
 name = "webpki-roots"
@@ -13488,6 +14161,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "xattr"
+version = "1.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "32e45ad4206f6d2479085147f02bc2ef834ac85886624a23575ae137c8aa8156"
+dependencies = [
+ "libc",
+ "rustix",
+]
+
+[[package]]
 name = "xorf"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -13497,6 +14180,12 @@ dependencies = [
  "rand 0.8.5",
  "serde",
 ]
+
+[[package]]
+name = "xxhash-rust"
+version = "0.8.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fdd20c5420375476fbd4394763288da7eb0cc0b8c11deed431a91562af7335d3"
 
 [[package]]
 name = "yaml-rust2"
@@ -13660,6 +14349,27 @@ dependencies = [
  "sha1",
  "time",
  "zstd 0.11.2+zstd.1.5.2",
+]
+
+[[package]]
+name = "zk-cosmwasm"
+version = "3.0.3-dev"
+dependencies = [
+ "base64 0.22.1",
+ "cosmwasm-vm-derive",
+ "group",
+ "halo2_gadgets",
+ "halo2_proofs",
+ "hex",
+ "pasta_curves",
+ "rand 0.8.5",
+ "rand_core 0.6.4",
+ "serde",
+ "serde_json",
+ "thiserror 1.0.69",
+ "wasmer",
+ "wasmer-middlewares",
+ "wasmer-types",
 ]
 
 [[package]]
