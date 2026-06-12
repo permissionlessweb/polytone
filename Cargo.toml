@@ -47,7 +47,6 @@ cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
 
 [patch.crates-io]
 blst = { package = "nam-blst", path = "../blst/bindings/rust", version = "0.3.17-nam.0" }
-alloy = {path = "../alloy/crates/alloy"}
 
 [patch.'https://github.com/permissionlessweb/polytone']
 evm-note = { path = "contracts/main/evm-note" }

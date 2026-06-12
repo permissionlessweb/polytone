@@ -17,7 +17,7 @@ library = []
 cw-orch = { workspace = true }
 polytone-evm = { workspace = true }
 
-alloy = "1.0.25"    
+alloy = {path = "../../../../alloy/crates/alloy"}
 alloy-sol-types = "1.3.1"  
 cosmwasm-schema = { workspace = true }
 cosmwasm-std = { workspace = true, features = ["stargate"] }

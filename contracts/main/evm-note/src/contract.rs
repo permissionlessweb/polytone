@@ -1,8 +1,7 @@
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 use cosmwasm_std::{
-    to_json_binary, Binary, Deps, DepsMut, Env, IbcMsg, IbcTimeout, MessageInfo, Order, Response,
-    StdResult,
+    Binary, Deps, DepsMut, Env, IbcMsg, IbcTimeout, MessageInfo, MigrateInfo, Order, Response, StdResult, to_json_binary
 };
 use cw2::set_contract_version;
 use cw_storage_plus::Bound;
@@ -150,7 +149,7 @@ pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
-pub fn migrate(deps: DepsMut, _env: Env, msg: MigrateMsg) -> Result<Response, ContractError> {
+pub fn migrate(deps: DepsMut, _env: Env, msg: MigrateMsg, _info: MigrateInfo) -> Result<Response, ContractError> {
     cw2::set_contract_version(deps.storage, EVM_NOTE_ID, CONTRACT_VERSION)?;
 
     match msg {
