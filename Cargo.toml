@@ -14,11 +14,11 @@ rust-version = "1.67"
 version = "3.0.0-rc"
 
 [workspace.dependencies]
-cw-orch-polytone = { path = "packages/cw-orch-polytone" }
-polytone = { path = "packages/polytone" }
-polytone-note = { path = "contracts/main/note" }
-polytone-proxy = { path = "contracts/main/proxy" }
-polytone-voice = { path = "contracts/main/voice" }
+cw-orch-polytone = { package = "abstract-cw-orch-polytone", path = "packages/cw-orch-polytone" }
+polytone = { package = "abstract-polytone", path = "packages/polytone" }
+polytone-note = { package = "abstract-polytone-note", path = "contracts/main/note" }
+polytone-proxy = { package = "abstract-polytone-proxy", path = "contracts/main/proxy" }
+polytone-voice = { package = "abstract-polytone-voice", path = "contracts/main/voice" }
 
 cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
 cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", branch = "zk-mvp" }
