@@ -16,7 +16,9 @@ cosmwasm-std = { workspace = true }
 polytone-note = { workspace = true }
 polytone-proxy = { workspace = true }
 polytone-voice = { workspace = true }
-cw-orch-interchain = { workspace = true, features = ["daemon"] }
+# core traits only. The daemon feature also turns on cw-orch-starship,
+# which pulls ibc-relayer and a yanked crates.io dep. Library code uses core::.
+cw-orch-interchain = { workspace = true }
 clap = { version = "4.0.32", features = ["derive"] }
 dotenv = "0.15.0"
 env_logger = "0.10.2"
