@@ -5,9 +5,10 @@ use cw_orch::{core::serde_json, daemon::DeployedChains, prelude::*};
 
 use crate::{
     deploy::{POLYTONE_NOTE, POLYTONE_VOICE},
-    interchain::DELIMITER,
     Polytone,
 };
+
+const DELIMITER: &str = " | ";
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ConnectedPolytone {

@@ -126,3 +126,50 @@ impl<Chain: IbcQueryHandler> PolytoneConnection<Chain> {
         vec![&mut self.note, &mut self.voice, &mut self.proxy]
     }
 }
+
+impl<Chain: CwEnv + IbcQueryHandler> crate::Polytone<Chain> {
+    pub fn connect(
+        &self,
+        dst: &crate::Polytone<Chain>,
+        interchain: &impl InterchainEnv<Chain>,
+    ) -> Result<PolytoneConnection<Chain>, InterchainError> {
+        self.instantiate_note(None).map_err(cosmwasm_std::StdError::msg)?;
+        dst.instantiate_voice(None)?;
+
+        let polytone_connection = PolytoneConnection::load_from(
+            self.note.environment().clone(),
+            dst.voice.environment().clone(),
+        );
+
+        polytone_connection.note.set_address(&self.note.address()?);
+        polytone_connection.voice.set_address(&dst.voice.address()?);
+
+        self.note.remove_address();
+        dst.voice.remove_address();
+
+        interchain.create_contract_channel(
+            &polytone_connection.note,
+            &polytone_connection.voice,
+            "polytone-1",
+            Some(cosmwasm_std::IbcOrder::Unordered),
+        )?;
+
+        Ok(polytone_connection)
+    }
+
+    pub fn connect_if_needed(
+        &self,
+        dst: &crate::Polytone<Chain>,
+        interchain: &impl InterchainEnv<Chain>,
+    ) -> Result<PolytoneConnection<Chain>, InterchainError> {
+        let polytone_connection = PolytoneConnection::load_from(
+            self.note.environment().clone(),
+            dst.voice.environment().clone(),
+        );
+        if polytone_connection.note.address().is_ok() && polytone_connection.voice.address().is_ok()
+        {
+            return Ok(polytone_connection);
+        }
+        self.connect(dst, interchain)
+    }
+}

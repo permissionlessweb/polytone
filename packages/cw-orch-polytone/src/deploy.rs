@@ -1,13 +1,10 @@
 use std::path::PathBuf;
 
 use crate::utils::read_json;
-use crate::{interchain::PolytoneConnection, PolytoneNote, PolytoneProxy, PolytoneVoice};
-use cosmwasm_std::{IbcOrder, StdError};
+use crate::{PolytoneNote, PolytoneProxy, PolytoneVoice};
 use cw_orch::core::serde_json::Value;
 use cw_orch::daemon::DeployedChains;
 use cw_orch::prelude::*;
-use cw_orch_interchain::core::InterchainError;
-use cw_orch_interchain::core::{IbcQueryHandler, InterchainEnv};
 
 use crate::Polytone;
 
@@ -133,7 +130,7 @@ impl<Chain: CwEnv> Polytone<Chain> {
         Ok(polytone)
     }
 
-    pub(crate) fn instantiate_note(
+    pub fn instantiate_note(
         &self,
         admin: Option<String>,
     ) -> Result<Chain::Response, CwOrchError> {
@@ -147,7 +144,7 @@ impl<Chain: CwEnv> Polytone<Chain> {
         )
     }
 
-    pub(crate) fn instantiate_voice(
+    pub fn instantiate_voice(
         &self,
         admin: Option<String>,
     ) -> Result<Chain::Response, CwOrchError> {
@@ -159,56 +156,5 @@ impl<Chain: CwEnv> Polytone<Chain> {
             admin.map(Addr::unchecked).as_ref(),
             &[],
         )
-    }
-}
-impl<Chain: CwEnv + IbcQueryHandler> Polytone<Chain> {
-    pub fn connect(
-        &self,
-        dst: &Polytone<Chain>,
-        interchain: &impl InterchainEnv<Chain>,
-    ) -> Result<PolytoneConnection<Chain>, InterchainError> {
-        // We create a channel between the 2 polytone instances
-
-        self.instantiate_note(None).map_err(StdError::msg)?;
-        dst.instantiate_voice(None)?;
-
-        let polytone_connection = PolytoneConnection::load_from(
-            self.note.environment().clone(),
-            dst.voice.environment().clone(),
-        );
-
-        polytone_connection.note.set_address(&self.note.address()?);
-        polytone_connection.voice.set_address(&dst.voice.address()?);
-
-        // We reset the state, this object shouldn't have registered addresses in a normal flow
-        self.note.remove_address();
-        dst.voice.remove_address();
-
-        // Doing this last as it will has all chances of being cancelled
-        interchain.create_contract_channel(
-            &polytone_connection.note,
-            &polytone_connection.voice,
-            "polytone-1",
-            Some(IbcOrder::Unordered),
-        )?;
-
-        Ok(polytone_connection)
-    }
-
-    pub fn connect_if_needed(
-        &self,
-        dst: &Polytone<Chain>,
-        interchain: &impl InterchainEnv<Chain>,
-    ) -> Result<PolytoneConnection<Chain>, InterchainError> {
-        let polytone_connection = PolytoneConnection::load_from(
-            self.note.environment().clone(),
-            dst.voice.environment().clone(),
-        );
-        if polytone_connection.note.address().is_ok() && polytone_connection.voice.address().is_ok()
-        {
-            return Ok(polytone_connection);
-        }
-
-        self.connect(dst, interchain)
     }
 }
