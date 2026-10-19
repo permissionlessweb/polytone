@@ -20,11 +20,11 @@ polytone-note = { path = "contracts/main/note", package = "abstract-polytone-not
 polytone-proxy = { path = "contracts/main/proxy", package = "abstract-polytone-proxy" }
 polytone-voice = { path = "contracts/main/voice", package = "abstract-polytone-voice" }
 
-cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", rev = "e20646e2d9a9c4f93e993eb0656afa795f6e387a" }
-cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", rev = "e20646e2d9a9c4f93e993eb0656afa795f6e387a" }
-cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", rev = "cf066f8ca57cc30a7cf8f50fca9cf6e18291d71a" }
-cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", rev = "c5c680ddc3d896cc746618d7ad9b93e0f8271461" }
-cw2 = { git = "https://github.com/permissionlessweb/cw-minus", rev = "c5c680ddc3d896cc746618d7ad9b93e0f8271461" }
+cosmwasm-schema = { version = "=4.0.0-zk" }
+cosmwasm-std = { version = "=4.0.0-zk" }
+cw-storage-plus = { version = "3.0.1" }
+cw-utils = { version = "3.0.0" }
+cw2 = { version = "3.0.0" }
 
 serde = { version = "1.0.145", default-features = false, features = ["derive"] }
 # the sha2 version here is the same as the one used by
@@ -35,46 +35,42 @@ sha2 = "0.10.6"
 thiserror = "1.0.31"
 
 # dev-dependencies
-cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", rev = "ec4d693aad80ee70ddbd77c3b78c9807bedb6be0" }
-cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", rev = "ec4d693aad80ee70ddbd77c3b78c9807bedb6be0" }
+cw-orch = { version = "0.30.0" }
+cw-orch-interchain = { version = "0.8.0" }
 
 anyhow = { version = "1.0.51" }
-cw-multi-test = { package = "abstract-cw-multi-test", git = "https://github.com/permissionlessweb/cw-multi-test-fork", rev = "cbf6c519e16840ba2454553ff117f482d539b4cd" }
+cw-multi-test = { package = "abstract-cw-multi-test", version = "=3.0.0-rc" }
+[patch.crates-io]
 
-[patch."https://github.com/permissionlessweb/cw-orchestrator"]
-cw-orch = { path = "../cw-orchestrator/cw-orch" }
-cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
-cw-orch-core = { path = "../cw-orchestrator/packages/cw-orch-core" }
-cw-orch-daemon = { path = "../cw-orchestrator/cw-orch-daemon" }
-cw-orch-mock = { path = "../cw-orchestrator/packages/cw-orch-mock" }
-cw-orch-networks = { path = "../cw-orchestrator/packages/cw-orch-networks" }
-cw-orch-traits = { path = "../cw-orchestrator/packages/cw-orch-traits" }
-cw-orch-interchain-core = { path = "../cw-orchestrator/packages/interchain/interchain-core" }
-cw-orch-interchain-daemon = { path = "../cw-orchestrator/packages/interchain/interchain-daemon" }
-cw-orch-interchain-mock = { path = "../cw-orchestrator/packages/interchain/interchain-mock" }
-cw-orch-starship = { path = "../cw-orchestrator/packages/interchain/starship" }
-
-[patch.'https://github.com/permissionlessweb/cosmwasm']
+abstract-cw-multi-test = { path = "../cw-multi-test-fork" }
+cosmos-sdk-proto = { path = "../cosmos-rust/cosmos-sdk-proto" }
 cosmwasm-schema = { path = "../cosmwasm/packages/schema" }
 cosmwasm-std = { path = "../cosmwasm/packages/std" }
-
-[patch.'https://github.com/permissionlessweb/cw-storage-plus']
+cw-orch = { path = "../cw-orchestrator/cw-orch" }
+cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
 cw-storage-plus = { path = "../cw-storage-plus" }
-
-[patch.'https://github.com/permissionlessweb/cw-minus']
 cw-utils = { path = "../cw-minus/packages/cw-utils" }
 cw2 = { path = "../cw-minus/packages/cw2" }
+ibc-relayer-types = { path = "../hermes/crates/relayer-types" }
 
-[patch.'https://github.com/permissionlessweb/cw-multi-test-fork']
-abstract-cw-multi-test = { path = "../cw-multi-test-fork" }
-
-[patch.'https://github.com/permissionlessweb/polytone']
-abstract-cw-orch-polytone = { path = "packages/cw-orch-polytone" }
-abstract-polytone = { path = "packages/polytone" }
-abstract-polytone-note = { path = "contracts/main/note" }
-abstract-polytone-proxy = { path = "contracts/main/proxy" }
-abstract-polytone-voice = { path = "contracts/main/voice" }
-
+tendermint-proto = { path = "../tendermint-rs/proto" }
+informalsystems-pbjson = { path = "../pbjson/pbjson" }
+cw1 = { path = "../cw-plus/packages/cw1" }
+cw1-whitelist = { path = "../cw-plus/contracts/cw1-whitelist" }
+ibc-chain-registry = { path = "../hermes/crates/chain-registry" }
+cosmrs = { path = "../cosmos-rust/cosmrs" }
+ibc-proto = { path = "../ibc-proto-rs" }
+tendermint = { path = "../tendermint-rs/tendermint" }
+tendermint-rpc = { path = "../tendermint-rs/rpc" }
+zk-cosmwasm = { path = "../cosmwasm/packages/zk" }
+cw20-ics20 = { path = "../cw-plus/contracts/cw20-ics20" }
+cw-controllers = { path = "../cw-minus/packages/controllers" }
+cnidarium = { path = "../cnidarium" }
+ibc-types = { path = "../ibc-types/crates/ibc-types" }
+ics23 = { path = "../ics23/rust" }
+tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier" }
+jmt = { path = "../jmt" }
+tower-abci = { path = "../tower-abci" }
 [profile.release]
 codegen-units = 1
 debug = false
