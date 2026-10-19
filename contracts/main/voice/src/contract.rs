@@ -1,8 +1,9 @@
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 use cosmwasm_std::{
-    from_binary, instantiate2_address, to_binary, to_vec, Binary, CodeInfoResponse, ContractResult,
-    Deps, DepsMut, Env, MessageInfo, Response, StdResult, SubMsg, SystemResult, Uint64, WasmMsg,
+    from_json, instantiate2_address, to_json_binary, to_json_vec, Binary, CodeInfoResponse,
+    ContractResult, Deps, DepsMut, Env, MessageInfo, Response, StdResult, SubMsg, SystemResult,
+    Uint64, WasmMsg,
 };
 use cw2::set_contract_version;
 
@@ -59,12 +60,12 @@ pub fn execute(
             if info.sender != env.contract.address {
                 Err(ContractError::NotSelf)
             } else {
-                let Packet { sender, msg } = from_binary(&data)?;
+                let Packet { sender, msg } = from_json(data)?;
                 match msg {
                     Msg::Query { msgs } => {
                         let mut results = Vec::with_capacity(msgs.len());
                         for msg in msgs {
-                            let query_result = deps.querier.raw_query(&to_vec(&msg)?);
+                            let query_result = deps.querier.raw_query(&to_json_vec(&msg)?);
                             let error = match query_result {
                                 SystemResult::Ok(ContractResult::Err(error)) => {
                                     format!("contract: {error}")
@@ -107,7 +108,9 @@ pub fn execute(
                                 deps.querier.query_wasm_code_info(code_id)?;
                             let salt = salt(&connection_id, &counterparty_port, &sender);
                             let proxy = deps.api.addr_humanize(&instantiate2_address(
-                                &checksum, &contract, &salt,
+                                checksum.as_slice(),
+                                &contract,
+                                &salt,
                             )?)?;
                             SENDER_TO_PROXY.save(
                                 deps.storage,
@@ -119,7 +122,7 @@ pub fn execute(
                                     admin: None,
                                     code_id,
                                     label: format!("polytone-proxy {sender}"),
-                                    msg: to_binary(&polytone_proxy::msg::InstantiateMsg {})?,
+                                    msg: to_json_binary(&polytone_proxy::msg::InstantiateMsg {})?,
                                     funds: vec![],
                                     salt,
                                 }),
@@ -132,7 +135,7 @@ pub fn execute(
                             .add_submessage(SubMsg::reply_always(
                                 WasmMsg::Execute {
                                     contract_addr: proxy.into_string(),
-                                    msg: to_binary(&polytone_proxy::msg::ExecuteMsg::Proxy {
+                                    msg: to_json_binary(&polytone_proxy::msg::ExecuteMsg::Proxy {
                                         msgs,
                                     })?,
                                     funds: vec![],
@@ -168,8 +171,8 @@ fn salt(local_connection: &str, counterparty_port: &str, remote_sender: &str) ->
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
     match msg {
-        QueryMsg::BlockMaxGas => to_binary(&BLOCK_MAX_GAS.load(deps.storage)?),
-        QueryMsg::ProxyCodeId => to_binary(&PROXY_CODE_ID.load(deps.storage)?),
+        QueryMsg::BlockMaxGas => to_json_binary(&BLOCK_MAX_GAS.load(deps.storage)?),
+        QueryMsg::ProxyCodeId => to_json_binary(&PROXY_CODE_ID.load(deps.storage)?),
     }
 }
 

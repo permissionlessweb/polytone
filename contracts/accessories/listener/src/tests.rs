@@ -1,4 +1,4 @@
-use cosmwasm_std::{to_binary, Addr, Empty, Uint64};
+use cosmwasm_std::{to_json_binary, Addr, Empty, StdError, Uint64};
 
 use cw_multi_test::{App, Contract, ContractWrapper, Executor};
 use polytone::callbacks::{Callback, CallbackMessage};
@@ -87,8 +87,10 @@ fn test() {
     // Allows note to execute callback.
     let callback = CallbackMessage {
         initiator: Addr::unchecked(INITIATOR_ADDR),
-        initiator_msg: to_binary(INITIATOR_MSG).unwrap(),
-        result: Callback::Execute(Result::Err("ERROR".to_string())),
+        initiator_msg: to_json_binary(INITIATOR_MSG).unwrap(),
+        result: Callback::Execute(polytone::callbacks::ExecutionCallbackResult::Error(
+            "ERROR".to_string(),
+        )),
     };
     app.execute_contract(
         note1,
@@ -99,7 +101,7 @@ fn test() {
     .unwrap();
 
     // Prevents different note from executing callback.
-    let err: ContractError = app
+    let err = app
         .execute_contract(
             note2,
             listener.clone(),
@@ -107,9 +109,10 @@ fn test() {
             &[],
         )
         .unwrap_err()
-        .downcast()
-        .unwrap();
-    assert_eq!(err, ContractError::Unauthorized {});
+        .to_string();
+
+    assert!(err
+        .contains(&ContractError::Std(StdError::msg(ContractError::Unauthorized {})).to_string()));
 
     // Returns the correct callback.
     let response: ResultResponse = app
@@ -118,7 +121,7 @@ fn test() {
             listener,
             &QueryMsg::Result {
                 initiator: INITIATOR_ADDR.to_string(),
-                initiator_msg: to_binary(INITIATOR_MSG).unwrap().to_string(),
+                initiator_msg: to_json_binary(INITIATOR_MSG).unwrap().to_string(),
             },
         )
         .unwrap();

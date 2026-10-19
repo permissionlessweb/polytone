@@ -1,4 +1,4 @@
-use cosmwasm_std::{Addr, Uint64};
+use cosmwasm_std::{Addr, StdError, Uint64};
 
 use crate::{error::ContractError, msg::Pair};
 
@@ -65,9 +65,12 @@ fn test_migrate_validation() {
 
     let err = suite
         .update(Addr::unchecked(CREATOR_ADDR), 0)
+        .map_err(|e| ContractError::Std(e))
         .unwrap_err()
-        .downcast::<ContractError>()
-        .unwrap();
+        .to_string();
 
-    assert_eq!(err, ContractError::GasLimitsMismatch);
+    assert!(err.contains(
+        &ContractError::Std(StdError::msg(ContractError::GasLimitsMismatch.to_string()))
+            .to_string()
+    ))
 }

@@ -1,4 +1,4 @@
-use cosmwasm_std::{Addr, Empty, Uint64};
+use cosmwasm_std::{Addr, Empty, StdError, StdResult, Uint64};
 use cw_multi_test::{App, AppResponse, Contract, ContractWrapper, Executor};
 
 use crate::msg::QueryMsg::{ActiveChannel, BlockMaxGas, Pair as PairQuery};
@@ -100,7 +100,7 @@ impl Suite {
 
 // migrate
 impl Suite {
-    pub fn update(&mut self, sender: Addr, block_max_gas: u64) -> anyhow::Result<AppResponse> {
+    pub fn update(&mut self, sender: Addr, block_max_gas: u64) -> StdResult<AppResponse> {
         self.app.migrate_contract(
             sender,
             self.note_address.clone(),

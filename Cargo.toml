@@ -1,13 +1,76 @@
 [workspace]
-members = ["packages/*", "contracts/accessories/*", "contracts/main/*"]
+members = [
+    "contracts/accessories/*",
+    "contracts/main/*",
+    "packages/*",
+    "scripts",
+]
 
 [workspace.package]
 edition = "2021"
 license = "BSD-3-Clause"
 repository = "https://github.com/DA0-DA0/polytone"
 rust-version = "1.67"
-version = "1.0.2"
+version = "3.0.0-rc"
 
+[workspace.dependencies]
+cw-orch-polytone = { path = "packages/cw-orch-polytone", package = "abstract-cw-orch-polytone" }
+polytone = { path = "packages/polytone", package = "abstract-polytone" }
+polytone-note = { path = "contracts/main/note", package = "abstract-polytone-note" }
+polytone-proxy = { path = "contracts/main/proxy", package = "abstract-polytone-proxy" }
+polytone-voice = { path = "contracts/main/voice", package = "abstract-polytone-voice" }
+
+cosmwasm-schema = { version = "=4.0.0-zk" }
+cosmwasm-std = { version = "=4.0.0-zk" }
+cw-storage-plus = { version = "3.0.1" }
+cw-utils = { version = "3.0.0" }
+cw2 = { version = "3.0.0" }
+
+serde = { version = "1.0.145", default-features = false, features = ["derive"] }
+# the sha2 version here is the same as the one used by
+# cosmwasm-std. when bumping cosmwasm-std, this should also be
+# updated. to find cosmwasm_std's sha function:
+# ```cargo tree --package cosmwasm-std```
+sha2 = "0.10.6"
+thiserror = "1.0.31"
+
+# dev-dependencies
+cw-orch = { version = "0.30.0" }
+cw-orch-interchain = { version = "0.8.0" }
+
+anyhow = { version = "1.0.51" }
+cw-multi-test = { package = "abstract-cw-multi-test", version = "=3.0.0-rc" }
+[patch.crates-io]
+
+abstract-cw-multi-test = { path = "../cw-multi-test-fork" }
+cosmos-sdk-proto = { path = "../cosmos-rust/cosmos-sdk-proto" }
+cosmwasm-schema = { path = "../cosmwasm/packages/schema" }
+cosmwasm-std = { path = "../cosmwasm/packages/std" }
+cw-orch = { path = "../cw-orchestrator/cw-orch" }
+cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
+cw-storage-plus = { path = "../cw-storage-plus" }
+cw-utils = { path = "../cw-minus/packages/cw-utils" }
+cw2 = { path = "../cw-minus/packages/cw2" }
+ibc-relayer-types = { path = "../hermes/crates/relayer-types" }
+
+tendermint-proto = { path = "../tendermint-rs/proto" }
+informalsystems-pbjson = { path = "../pbjson/pbjson" }
+cw1 = { path = "../cw-plus/packages/cw1" }
+cw1-whitelist = { path = "../cw-plus/contracts/cw1-whitelist" }
+ibc-chain-registry = { path = "../hermes/crates/chain-registry" }
+cosmrs = { path = "../cosmos-rust/cosmrs" }
+ibc-proto = { path = "../ibc-proto-rs" }
+tendermint = { path = "../tendermint-rs/tendermint" }
+tendermint-rpc = { path = "../tendermint-rs/rpc" }
+zk-cosmwasm = { path = "../cosmwasm/packages/zk" }
+cw20-ics20 = { path = "../cw-plus/contracts/cw20-ics20" }
+cw-controllers = { path = "../cw-minus/packages/controllers" }
+cnidarium = { path = "../cnidarium" }
+ibc-types = { path = "../ibc-types/crates/ibc-types" }
+ics23 = { path = "../ics23/rust" }
+tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier" }
+jmt = { path = "../jmt" }
+tower-abci = { path = "../tower-abci" }
 [profile.release]
 codegen-units = 1
 debug = false
@@ -18,29 +81,3 @@ opt-level = 3
 overflow-checks = true   # very important, do not turn these off.
 panic = 'abort'
 rpath = false
-
-[workspace.dependencies]
-polytone = { path = "packages/polytone", version = "1.0.0" }
-polytone-proxy = { path = "contracts/main/proxy", version = "1.0.0" }
-polytone-note = { path = "contracts/main/note", version = "1.0.0" }
-polytone-voice = { path = "contracts/main/voice", version = "1.0.0" }
-
-cosmwasm-schema = "1.2.1"
-cosmwasm-std = { version = "1.5.0", features = ["ibc3"] }
-cw-storage-plus = "1.0.1"
-cw-utils = "1.0.1"
-cw2 = "1.0.1"
-
-serde = { version = "1.0.145", default-features = false, features = ["derive"] }
-thiserror = "1.0.31"
-# the sha2 version here is the same as the one used by
-# cosmwasm-std. when bumping cosmwasm-std, this should also be
-# updated. to find cosmwasm_std's sha function:
-# ```cargo tree --package cosmwasm-std```
-sha2 = "0.10.6"
-
-# dev-dependencies
-cw-multi-test = "0.16.2"
-polytone-tester = { path = "tests/polytone-tester" }
-anyhow = { version = "1.0.51" }
-cw-orch = { version = "0.20.0" }

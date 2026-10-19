@@ -68,7 +68,7 @@ mod tests {
         on_send_packet(storage, channel_id.clone(), 1, &sender).unwrap();
         on_ack(storage, channel_id, 1, Some("remote".to_string()));
 
-        let remote_account = query_account(storage, sender.clone());
+        let remote_account = query_account(storage, sender.clone()).unwrap();
 
         let channel_id = "channel-1".to_string();
 
@@ -76,7 +76,7 @@ mod tests {
         on_send_packet(storage, channel_id.clone(), 1, &sender).unwrap();
         on_ack(storage, channel_id, 1, Some("remote".to_string()));
 
-        let new_remote_account = query_account(storage, sender);
+        let new_remote_account = query_account(storage, sender).unwrap();
         assert_eq!(
             new_remote_account, remote_account,
             "changing the channel shouldn't change the account"
