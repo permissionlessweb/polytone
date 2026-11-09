@@ -19,7 +19,7 @@ polytone-proxy = { workspace = true }
 polytone-voice = { workspace = true }
 cw-orch-interchain = { workspace = true, features = ["daemon"], optional = true }
 clap = { version = "4.0.32", features = ["derive"] }
-dotenv = "0.15.0"
+dotenv = { package = "dotenvy", version = "0.15" }
 env_logger = "0.10.2"
 log = "0.4.22"
 

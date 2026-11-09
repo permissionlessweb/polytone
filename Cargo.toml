@@ -20,8 +20,8 @@ polytone-note = { path = "contracts/main/note", package = "abstract-polytone-not
 polytone-proxy = { path = "contracts/main/proxy", package = "abstract-polytone-proxy" }
 polytone-voice = { path = "contracts/main/voice", package = "abstract-polytone-voice" }
 
-cosmwasm-schema = { version = "=4.0.0-zk" }
-cosmwasm-std = { version = "=4.0.0-zk" }
+cosmwasm-schema = { version = "=4.1.0" }
+cosmwasm-std = { version = "=4.1.0" }
 cw-storage-plus = { version = "3.0.1" }
 cw-utils = { version = "3.0.0" }
 cw2 = { version = "3.0.0" }
@@ -42,35 +42,36 @@ anyhow = { version = "1.0.51" }
 cw-multi-test = { package = "abstract-cw-multi-test", version = "=3.0.0-rc" }
 [patch.crates-io]
 
-abstract-cw-multi-test = { path = "../cw-multi-test-fork" }
-cosmos-sdk-proto = { path = "../cosmos-rust/cosmos-sdk-proto" }
-cosmwasm-schema = { path = "../cosmwasm/packages/schema" }
-cosmwasm-std = { path = "../cosmwasm/packages/std" }
-cw-orch = { path = "../cw-orchestrator/cw-orch" }
-cw-orch-interchain = { path = "../cw-orchestrator/cw-orch-interchain" }
-cw-storage-plus = { path = "../cw-storage-plus" }
-cw-utils = { path = "../cw-minus/packages/cw-utils" }
-cw2 = { path = "../cw-minus/packages/cw2" }
 ibc-relayer-types = { path = "../hermes/crates/relayer-types" }
 
-tendermint-proto = { path = "../tendermint-rs/proto" }
-informalsystems-pbjson = { path = "../pbjson/pbjson" }
-cw1 = { path = "../cw-plus/packages/cw1" }
-cw1-whitelist = { path = "../cw-plus/contracts/cw1-whitelist" }
 ibc-chain-registry = { path = "../hermes/crates/chain-registry" }
-cosmrs = { path = "../cosmos-rust/cosmrs" }
 ibc-proto = { path = "../ibc-proto-rs" }
-tendermint = { path = "../tendermint-rs/tendermint" }
-tendermint-rpc = { path = "../tendermint-rs/rpc" }
 zk-cosmwasm = { path = "../cosmwasm/packages/zk" }
-cw20-ics20 = { path = "../cw-plus/contracts/cw20-ics20" }
-cw-controllers = { path = "../cw-minus/packages/controllers" }
 cnidarium = { path = "../cnidarium" }
 ibc-types = { path = "../ibc-types/crates/ibc-types" }
 ics23 = { path = "../ics23/rust" }
-tendermint-light-client-verifier = { path = "../tendermint-rs/light-client-verifier" }
 jmt = { path = "../jmt" }
 tower-abci = { path = "../tower-abci" }
+
+abstract-cw-multi-test = { git = "https://github.com/permissionlessweb/cw-multi-test-fork", rev = "2eb14e1f0b66caed897a3c4a69a4c57282b565c0" }
+cosmos-sdk-proto = { git = "https://github.com/permissionlessweb/cosmos-rust", rev = "877ee79b693760f7ffa97ef542f5788c26f537dd" }
+cw-orch = { git = "https://github.com/permissionlessweb/cw-orchestrator", rev = "99f8a568fe733735579b891c1dc47c97e4c8960d" }
+cw-orch-interchain = { git = "https://github.com/permissionlessweb/cw-orchestrator", rev = "99f8a568fe733735579b891c1dc47c97e4c8960d" }
+cw-storage-plus = { git = "https://github.com/permissionlessweb/cw-storage-plus", rev = "b303f445113c95427b57fc825bc033fdf3e6fee0" }
+cw-utils = { git = "https://github.com/permissionlessweb/cw-minus", rev = "14194672e846a56e5a37a4a3b449e375f6f2b496" }
+cw2 = { git = "https://github.com/permissionlessweb/cw-minus", rev = "14194672e846a56e5a37a4a3b449e375f6f2b496" }
+tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "c732393410cefadb53da98836a7620ef1a1ef8bb" }
+cw1 = { git = "https://github.com/permissionlessweb/cw-plus", rev = "f66883649c08d2671cc7d66cdf4f7f6abec4e44d" }
+cw1-whitelist = { git = "https://github.com/permissionlessweb/cw-plus", rev = "f66883649c08d2671cc7d66cdf4f7f6abec4e44d" }
+cosmrs = { git = "https://github.com/permissionlessweb/cosmos-rust", rev = "877ee79b693760f7ffa97ef542f5788c26f537dd" }
+tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "c732393410cefadb53da98836a7620ef1a1ef8bb" }
+tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "c732393410cefadb53da98836a7620ef1a1ef8bb" }
+cw20-ics20 = { git = "https://github.com/permissionlessweb/cw-plus", rev = "f66883649c08d2671cc7d66cdf4f7f6abec4e44d" }
+cw-controllers = { git = "https://github.com/permissionlessweb/cw-minus", rev = "14194672e846a56e5a37a4a3b449e375f6f2b496" }
+tendermint-light-client-verifier = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "c732393410cefadb53da98836a7620ef1a1ef8bb" }
+cosmwasm-schema = { git = "https://github.com/permissionlessweb/cosmwasm", rev = "e20646e2d9a9c4f93e993eb0656afa795f6e387a" }
+cosmwasm-std = { git = "https://github.com/permissionlessweb/cosmwasm", rev = "e20646e2d9a9c4f93e993eb0656afa795f6e387a" }
+informalsystems-pbjson = { git = "https://github.com/permissionlessweb/pbjson", rev = "df9ae64ffc106affccdfec2437365f8498ef306d" }
 [profile.release]
 codegen-units = 1
 debug = false
